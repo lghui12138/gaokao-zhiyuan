@@ -1,0 +1,812 @@
+{
+  "dataset": "official-xizang-current-notices-2026-import",
+  "generatedAt": "2026-07-11T03:55:50.009Z",
+  "scope": "西藏 2026 当前官方公告：艺术/体育统考合格线、公安司法消防北电军队院校/定向培养军士/志愿填报流程提醒",
+  "notes": [
+    "本文件由 scripts/import-official-xizang-current-notices-2026.mjs 自动生成。",
+    "艺术类专业统考合格分数线（校考资格线）按 control-line 特殊资格边界导入。",
+    "体育类专业统考合格线按 control-line 特殊资格边界导入。",
+    "公安、司法、消防、北京电子科技学院、军队院校、定向培养军士和志愿填报公告当前不含可导入正式投档/录取分数线，只保留 sourceNotes 和流程提醒。"
+  ],
+  "sourceNotes": [
+    {
+      "id": "official-xizang-art-qualified-line-2026",
+      "title": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线（校考资格线）",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "publishedAt": "2026-02-10 17:36",
+      "quality": "official-xizang-2026-art-qualified-line-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "htmlBytes": 16049,
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712",
+      "usage": "官方 HTML 表抽取西藏 2026 艺术类专业统考合格分数线（校考资格线）12 条；仅作艺术类统考/校考资格边界，不作普通类投档或录取概率。",
+      "parsedRecords": 12,
+      "scoreRange": {
+        "min": 150,
+        "max": 200
+      },
+      "categories": [
+        "音乐表演",
+        "音乐教育",
+        "舞蹈类",
+        "表(导)演类",
+        "播音与主持类",
+        "美术与设计类",
+        "书法类"
+      ],
+      "caution": "艺术统考合格线不是普通批次投档线，也不计作西藏正式投档/录取最低分闭合。"
+    },
+    {
+      "id": "official-xizang-police-process-notice-2026",
+      "title": "关于2026年公安院校公安专业西藏招生体检面试体能测评和政治考察工作的公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7704.html",
+      "publishedAt": "2026-04-29 11:20",
+      "quality": "official-xizang-2026-police-process-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/police-process-notice.html",
+      "htmlBytes": 57993,
+      "htmlSha256": "4261c9afc061476026bbf5c0f802d58978da71b1fab4f5931659b56f8adf7411",
+      "usage": "公安院校公安专业西藏招生体检、面试、体能测评和政治考察工作公告；只作特殊路径报考条件、院校范围、组织单位、时间和官方复核提醒。",
+      "parsedRecords": 0,
+      "schoolCount": 9,
+      "caution": "该公告未公布公安院校投档线、录取最低分或最低位次，不能生成录取概率或正式分数闭合。"
+    },
+    {
+      "id": "official-xizang-police-judicial-minzu-campus-notice-2026",
+      "title": "2026年西藏民族大学考区公安和司法体检、体测、面试公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7818.html",
+      "publishedAt": "2026-06-05 18:04",
+      "quality": "official-xizang-2026-police-judicial-minzu-campus-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/police-judicial-minzu-campus-notice.html",
+      "htmlBytes": 13226,
+      "htmlSha256": "81f239cd66b9f60a97c5fe31aa13663190ea8384cd371a0c0e1699dd44001186",
+      "usage": "西藏民族大学考区公安和司法体检、体测、面试公告；只作公安/司法特殊路径现场安排、时间地点、材料报送和复核提醒。",
+      "parsedRecords": 0,
+      "caution": "该公告未公布公安或司法投档线、录取最低分或最低位次，不能生成录取概率或正式分数闭合。"
+    },
+    {
+      "id": "official-xizang-fire-rescue-admission-notice-2026",
+      "title": "西藏自治区消防员招录工作办公室关于2026年中国消防救援学院在西藏招收青年学生有关事宜的公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7827.html",
+      "publishedAt": "2026-06-10 19:26",
+      "quality": "official-xizang-2026-fire-rescue-admission-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/fire-rescue-admission-notice.html",
+      "htmlBytes": 56480,
+      "htmlSha256": "451f62da600693916d155147772a7cf7e92e549814e8237bc2323c8018b70a94",
+      "usage": "中国消防救援学院在西藏招收青年学生公告；招生计划已由西藏 2026 招生计划 DOCX 入库，本页只补政治考核、体检、面试、心理测试和附件复核来源。",
+      "parsedRecords": 0,
+      "planCountMentioned": 6,
+      "attachmentUrls": [
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260610/1781090482449.doc",
+          "text": "中国消防救援学院招收青年学生政治考核表.doc"
+        },
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260610/1781090499189.doc",
+          "text": "政治考核表填写说明.doc"
+        }
+      ],
+      "caution": "该公告未公布投档线、录取最低分或最低位次；计划数不能单独生成录取概率。"
+    },
+    {
+      "id": "official-xizang-beijing-electronic-charter-2026",
+      "title": "北京电子科技学院2026年本科招生章程",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7849.html",
+      "publishedAt": "2026-06-18 18:34",
+      "quality": "official-xizang-2026-beijing-electronic-charter-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/beijing-electronic-charter.html",
+      "htmlBytes": 35704,
+      "htmlSha256": "3c42b1d42d39647e12ce0b695da4b4776322210e91797a406068beff39da6946",
+      "usage": "北京电子科技学院 2026 年本科招生章程；只作提前批、面试政审、英语语种、身体条件、调档与专业录取规则复核来源。",
+      "parsedRecords": 0,
+      "caution": "招生章程不是投档线、录取最低分或最低位次，不能生成正式分数闭合。"
+    },
+    {
+      "id": "official-xizang-volunteer-filling-notice-2026",
+      "title": "关于做好西藏自治区2026年普通高等学校招生志愿填报工作的通知",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7883.html",
+      "publishedAt": "2026-06-26 16:09",
+      "quality": "official-xizang-2026-volunteer-filling-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/volunteer-filling-notice.html",
+      "htmlBytes": 38758,
+      "htmlSha256": "4ef37d4b33c8659efd7d6ed768cf4b55f268966a81769fefebf246a861de57f3",
+      "usage": "西藏 2026 普通高等学校招生志愿填报工作通知；只作正式填报时间、批次一次性填报、辅助系统边界、复核清单和流程提醒。",
+      "parsedRecords": 0,
+      "attachmentUrls": [
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260626/1782461294763.docx",
+          "text": "西藏自治区普通高校招生志愿填报辅助系统操作手册.docx"
+        },
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260626/1782461322157.docx",
+          "text": "西藏自治区2026年普通高等学校招生志愿填报流程.docx"
+        }
+      ],
+      "caution": "志愿填报通知不是投档线、录取最低分或最低位次；辅助系统结果仅供参考，不承诺录取结果。"
+    },
+    {
+      "id": "official-xizang-sports-qualified-line-2026",
+      "title": "西藏自治区2026年普通高校招生体育类专业统考合格分数线",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7891.html",
+      "publishedAt": "2026-06-27 21:49",
+      "quality": "official-xizang-2026-sports-qualified-line-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/sports-qualified-line.html",
+      "htmlBytes": 11913,
+      "htmlSha256": "bdc7a269279104ccd2d2eaa1bb2db00a43bc5d68a3f17bcb923af0dd4a094dcd",
+      "usage": "官方 HTML 表抽取西藏 2026 体育类专业统考合格线 2 条；仅作体育类专业统考资格边界，不作普通类投档或录取概率。",
+      "parsedRecords": 2,
+      "scoreRange": {
+        "min": 45,
+        "max": 45
+      },
+      "caution": "体育统考合格线不是普通批次投档线，也不计作西藏正式投档/录取最低分闭合。"
+    },
+    {
+      "id": "official-xizang-military-interview-medical-notice-2026",
+      "title": "2026年军队院校在藏招收普通高中毕业生面试体检工作公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7899.html",
+      "publishedAt": "2026-06-28 17:39",
+      "quality": "official-xizang-2026-military-interview-medical-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/military-interview-medical-notice.html",
+      "htmlBytes": 28462,
+      "htmlSha256": "cf5141d688f1b7e7bcfa036393c000e17ca90e7c2c3b0df5e683eeb2c527dfb1",
+      "usage": "军队院校在藏招生面试体检工作公告；当前页说明面试体检分数线将在志愿填报结束后另行公布，本轮只作特殊路径流程、条件、时间和复核提醒。",
+      "parsedRecords": 0,
+      "imageUrls": [
+        "http://zsks.edu.xizang.gov.cn/fs/2/image/20260628/1782639191437.png"
+      ],
+      "caution": "该公告尚未给出军队院校面试体检划线分数，不能生成录取分数记录。"
+    },
+    {
+      "id": "official-xizang-sergeant-process-notice-2026",
+      "title": "关于2026年在藏招收定向培养军士工作公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7900.html",
+      "publishedAt": "2026-06-28 17:42",
+      "quality": "official-xizang-2026-sergeant-process-notice-html",
+      "htmlPath": "data/admissions/raw/official-xizang-current-notices-2026/sergeant-process-notice.html",
+      "htmlBytes": 27359,
+      "htmlSha256": "b64b6928e64ca186cb7661b7f7dff8e27cfd366dd8f74e1968b983ed3d891889",
+      "usage": "定向培养军士工作公告；当前页提供报考条件、流程、体检/政治考核和表格附件，只作特殊路径流程提醒，不生成投档/录取分数记录。",
+      "parsedRecords": 0,
+      "attachmentUrls": [
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260628/1782639690098.docx",
+          "text": "填表说明.docx"
+        },
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260628/1782639769149.docx",
+          "text": "政治考核表.docx"
+        },
+        {
+          "url": "http://zsks.edu.xizang.gov.cn/fs/2/document/20260628/1782639799461.docx",
+          "text": "病史调查表.docx"
+        }
+      ],
+      "caution": "该公告未公布定向培养军士体检/投档/录取最低分，不能生成录取概率或正式分数闭合。"
+    }
+  ],
+  "records": [
+    {
+      "id": "2026-xz-art-qualified-dfd1e41f77f0f1adad",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "音乐表演",
+        "本科"
+      ],
+      "dataType": "control-line",
+      "majorName": "音乐表演本科合格线",
+      "majorCode": null,
+      "majorGroup": "音乐表演",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 190,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "音乐表演",
+      "artLevel": "本科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-7b4b346b565b37c0f0",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "音乐表演",
+        "专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "音乐表演专科合格线",
+      "majorCode": null,
+      "majorGroup": "音乐表演",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 165,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "音乐表演",
+      "artLevel": "专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-4967a1409f6aac1667",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "音乐教育",
+        "本科"
+      ],
+      "dataType": "control-line",
+      "majorName": "音乐教育本科合格线",
+      "majorCode": null,
+      "majorGroup": "音乐教育",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "04",
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 200,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "音乐教育",
+      "artLevel": "本科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-2b7003c400407bc69d",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "音乐教育",
+        "专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "音乐教育专科合格线",
+      "majorCode": null,
+      "majorGroup": "音乐教育",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "04",
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 165,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "音乐教育",
+      "artLevel": "专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-f521b68e2588e99a5e",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "舞蹈类",
+        "本科"
+      ],
+      "dataType": "control-line",
+      "majorName": "舞蹈类本科合格线",
+      "majorCode": null,
+      "majorGroup": "舞蹈类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 200,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "舞蹈类",
+      "artLevel": "本科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-457b65abb3ac263cdd",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "舞蹈类",
+        "专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "舞蹈类专科合格线",
+      "majorCode": null,
+      "majorGroup": "舞蹈类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 180,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "舞蹈类",
+      "artLevel": "专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-a0db98d253458e3e75",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "表(导)演类",
+        "本专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "表(导)演类本专科合格线",
+      "majorCode": null,
+      "majorGroup": "表(导)演类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 150,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "表(导)演类",
+      "artLevel": "本专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-a1b686d271799cb88c",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "播音与主持类",
+        "本科"
+      ],
+      "dataType": "control-line",
+      "majorName": "播音与主持类本科合格线",
+      "majorCode": null,
+      "majorGroup": "播音与主持类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "05",
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 200,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "播音与主持类",
+      "artLevel": "本科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-f32dab93837bb99c39",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "播音与主持类",
+        "专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "播音与主持类专科合格线",
+      "majorCode": null,
+      "majorGroup": "播音与主持类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "05",
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 180,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "播音与主持类",
+      "artLevel": "专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-ede3c17a27fabdc8a4",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "美术与设计类",
+        "本科"
+      ],
+      "dataType": "control-line",
+      "majorName": "美术与设计类本科合格线",
+      "majorCode": null,
+      "majorGroup": "美术与设计类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 180,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "美术与设计类",
+      "artLevel": "本科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-95b71793bbce94a173",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "美术与设计类",
+        "专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "美术与设计类专科合格线",
+      "majorCode": null,
+      "majorGroup": "美术与设计类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 150,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "美术与设计类",
+      "artLevel": "专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-art-qualified-61af9689a927a2f7f4",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "艺术类",
+      "batch": "艺术类专业统考校考资格线",
+      "schoolName": "西藏自治区2026年普通高校招生艺术类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "艺术类",
+        "特殊路径",
+        "书法类",
+        "本专科"
+      ],
+      "dataType": "control-line",
+      "majorName": "书法类本专科合格线",
+      "majorCode": null,
+      "majorGroup": "书法类",
+      "electiveRequirement": "艺术类专业省级统考",
+      "disciplineCodes": [
+        "05",
+        "13"
+      ],
+      "planCount": null,
+      "minScore": 180,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-art-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-art-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7531.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/art-qualified-line.html",
+      "sourcePublishedAt": "2026-02-10 17:36",
+      "thresholdType": "艺术类专业统考合格线（校考资格线）",
+      "artCategory": "书法类",
+      "artLevel": "本专科",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是艺术类专业省级统考合格分数线（校考资格线），不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "艺术统考合格不等于录取；艺术类录取还需同时达到文化课控制线、专业/综合成绩排序、招生计划和院校规则。",
+        "该线只用于相应艺术类别校考资格或统考合格资格提醒，不能与普通类文化成绩一分一段混用。"
+      ],
+      "htmlSha256": "33386859473a7d7b21f359d032ba6a5f97cd66b1a24695b31c7f4a0a25b52712"
+    },
+    {
+      "id": "2026-xz-sports-qualified-8d0eb6c50696db6482",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "历史类",
+      "batch": "体育类专业统考合格线",
+      "schoolName": "西藏自治区2026年普通高校招生体育类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "体育类",
+        "特殊路径"
+      ],
+      "dataType": "control-line",
+      "majorName": "体育类专业统考合格线",
+      "majorCode": null,
+      "majorGroup": "文史类",
+      "electiveRequirement": "体育类专业统考",
+      "disciplineCodes": [
+        "04"
+      ],
+      "planCount": null,
+      "minScore": 45,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-sports-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-sports-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7891.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/sports-qualified-line.html",
+      "sourcePublishedAt": "2026-06-27 21:49",
+      "thresholdType": "体育类专业统考合格线",
+      "rawSubject": "文史类",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是体育类专业统考合格线，不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "专业统考合格不等于录取；体育类志愿还需同时达到文化课控制线、专业成绩排序、招生计划和院校规则。",
+        "普通考生不得填报体育类志愿；未参加西藏体育统考的考生不得填报以该统考成绩作为录取依据的体育院校或专业。"
+      ],
+      "htmlSha256": "bdc7a269279104ccd2d2eaa1bb2db00a43bc5d68a3f17bcb923af0dd4a094dcd"
+    },
+    {
+      "id": "2026-xz-sports-qualified-fbd818ed1bff98f1fc",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "物理类",
+      "batch": "体育类专业统考合格线",
+      "schoolName": "西藏自治区2026年普通高校招生体育类专业统考合格分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "体育类",
+        "特殊路径"
+      ],
+      "dataType": "control-line",
+      "majorName": "体育类专业统考合格线",
+      "majorCode": null,
+      "majorGroup": "理工类",
+      "electiveRequirement": "体育类专业统考",
+      "disciplineCodes": [
+        "04"
+      ],
+      "planCount": null,
+      "minScore": 45,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "sourceId": "official-xizang-sports-qualified-line-2026",
+      "sourceQuality": "official-xizang-2026-sports-qualified-line-html",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7891.html",
+      "sourceFile": "data/admissions/raw/official-xizang-current-notices-2026/sports-qualified-line.html",
+      "sourcePublishedAt": "2026-06-27 21:49",
+      "thresholdType": "体育类专业统考合格线",
+      "rawSubject": "理工类",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是体育类专业统考合格线，不是普通类批次控制线、院校投档线、录取最低分或最低位次。",
+        "专业统考合格不等于录取；体育类志愿还需同时达到文化课控制线、专业成绩排序、招生计划和院校规则。",
+        "普通考生不得填报体育类志愿；未参加西藏体育统考的考生不得填报以该统考成绩作为录取依据的体育院校或专业。"
+      ],
+      "htmlSha256": "bdc7a269279104ccd2d2eaa1bb2db00a43bc5d68a3f17bcb923af0dd4a094dcd"
+    }
+  ]
+}

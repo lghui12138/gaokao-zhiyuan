@@ -1,0 +1,80 @@
+{
+  "dataset": "official-xizang-three-gorges-plan-correction-2026-v3270",
+  "generatedAt": "2026-07-11T04:29:23.458Z",
+  "scope": "one-to-one-admission-plan-correction",
+  "officialPage": {
+    "title": "关于更正三峡大学招生计划的公告",
+    "publisher": "西藏自治区教育考试院",
+    "url": "http://zsks.edu.xizang.gov.cn/71/74/7894.html",
+    "publishedAt": "2026-06-27 21:55"
+  },
+  "sourceNotes": [
+    {
+      "id": "official-xizang-three-gorges-plan-correction-2026-v3270",
+      "title": "关于更正三峡大学招生计划的公告",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7894.html",
+      "publishedAt": "2026-06-27 21:55",
+      "quality": "official-xizang-2026-admission-plan-correction-html",
+      "usage": "对既有西藏2026招生计划中的唯一目标记录执行1对1原位更正，不增加计划记录数。",
+      "parsedRecords": 0,
+      "correctedRecords": 1,
+      "targetIds": [
+        "2026-xizang-plan-0a1d8e04b447e164ed"
+      ],
+      "rawFiles": [
+        {
+          "path": "data/admissions/raw/official-xizang-three-gorges-plan-correction-2026-v3270/page-7894.html",
+          "bytes": 14429,
+          "sha256": "6ce545051ca82176515b259e515ef16e208d848997c1ee2a1c1445d4ce760e0a"
+        }
+      ],
+      "cautions": [
+        "公告只更正院校代码和院校名称；专业代码、专业名称、学制、计划数、学费与备注保持不变。",
+        "该记录仍是招生计划层，不含投档最低分、录取最低分或最低位次，不能单独计算录取概率。",
+        "录取后不得调换专业，教学外语为英语；50000元学费和中外合作属性必须进入家庭红线筛选。"
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "targetId": "2026-xizang-plan-0a1d8e04b447e164ed",
+      "before": {
+        "schoolCode": "0329",
+        "schoolName": "三峡大学",
+        "majorCode": "04",
+        "majorName": "电气工程及其自动化(中外合作办学)",
+        "duration": "四年",
+        "planCount": 2,
+        "tuition": "50000",
+        "remark": "录取后不得调换专业，该专业教学外语为英语。"
+      },
+      "after": {
+        "schoolCode": "1466",
+        "schoolName": "三峡大学(中外合作办学)",
+        "majorCode": "04",
+        "majorName": "电气工程及其自动化(中外合作办学)",
+        "duration": "四年",
+        "planCount": 2,
+        "tuition": "50000",
+        "remark": "录取后不得调换专业，该专业教学外语为英语。"
+      },
+      "changedFields": [
+        "schoolCode",
+        "schoolName"
+      ],
+      "preservedFields": [
+        "id",
+        "majorCode",
+        "majorName",
+        "duration",
+        "planCount",
+        "tuition",
+        "remark"
+      ],
+      "planCorrectionNote": "西藏教育考试院2026-06-27公告：院校代码/名称由0329 三峡大学更正为1466 三峡大学(中外合作办学)，专业、学制、计划数和学费不变。",
+      "planRestrictionText": "录取后不得调换专业，该专业教学外语为英语。"
+    }
+  ],
+  "records": []
+}

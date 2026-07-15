@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-07-11T04:57:48Z",
+  "status": "verified",
+  "modelVersion": "local-deterministic-v3.270-xizang-ctgu-plan-correction2026-841776records",
+  "scope": "official-xizang-one-to-one-admission-plan-correction-and-plan-redline",
+  "counts": {
+    "structuredRecords": 841776,
+    "rankConversionRecords": 116309,
+    "sourceNotes": 5081,
+    "provinceShards": 31,
+    "schools": 10514,
+    "xizangRecords": 26111,
+    "correctedTargetRecords": 1,
+    "oldTargetRecords": 0,
+    "unknownRecords": 0,
+    "unknownRankConversions": 0
+  },
+  "officialSource": {
+    "title": "关于更正三峡大学招生计划的公告",
+    "publisher": "西藏自治区教育考试院",
+    "url": "http://zsks.edu.xizang.gov.cn/71/74/7894.html",
+    "publishedAt": "2026-06-27 21:55",
+    "pageSha256": "6ce545051ca82176515b259e515ef16e208d848997c1ee2a1c1445d4ce760e0a"
+  },
+  "correction": {
+    "targetId": "2026-xizang-plan-0a1d8e04b447e164ed",
+    "before": "0329 三峡大学",
+    "after": "1466 三峡大学(中外合作办学)",
+    "majorCode": "04",
+    "majorName": "电气工程及其自动化(中外合作办学)",
+    "programDuration": "四年",
+    "planCount": 2,
+    "tuition": "50000",
+    "planRemark": "录取后不得调换专业，该专业教学外语为英语。",
+    "recordCountDelta": 0
+  },
+  "artifacts": {
+    "master": {
+      "path": "site/data/knowledge.json",
+      "bytes": 1822131744,
+      "sha256": "99494b12b3f3141db2d626f568cd8c33161a2d1af06d718d0ad291fde2499eed"
+    },
+    "browserCore": {
+      "path": "site/data/knowledge-core.json",
+      "bytes": 14981859,
+      "sha256": "fac43887d607ce2d9c11786c5deed3f2f980127d2003a7ee1726bbd26a6ea297"
+    },
+    "provinceManifest": {
+      "path": "site/data/provinces/manifest.json",
+      "bytes": 7135,
+      "sha256": "100dff5c1b01fb6a300e746e81e7e79969c88e6487c8538615237d681f81dfaa"
+    },
+    "xizangShard": {
+      "path": "site/data/provinces/xizang.json",
+      "bytes": 24449545,
+      "sha256": "0abebe5f3dbafda8566431b3fe71142f90a50b45cf6aa067893c5a677361f72c"
+    },
+    "siteApp": {
+      "path": "site/assets/app.js",
+      "bytes": 100924,
+      "sha256": "3d43e019671a9bfd1b33781485e6f161576bee3c4da4366bc4911665faa092ce"
+    },
+    "rootApp": {
+      "path": "app.js",
+      "bytes": 95915,
+      "sha256": "6a20cae126350c8bbbe2edd6721257918362b5d0be5d00e3a3001cc24710b38e"
+    },
+    "importPackage": {
+      "path": "data/admissions/official-xizang-three-gorges-plan-correction-2026-v3270-import.json",
+      "bytes": 3167,
+      "sha256": "b50c2d287a199539390eaacf976191b8c9fdb75791f3cf207163e4e7ccc4683e"
+    }
+  },
+  "mirrorReadback": {
+    "root": "/Volumes/mac_2T/gaokao_zhiyuan_site_runtime",
+    "masterSha256": "99494b12b3f3141db2d626f568cd8c33161a2d1af06d718d0ad291fde2499eed",
+    "topDataSha256": "99494b12b3f3141db2d626f568cd8c33161a2d1af06d718d0ad291fde2499eed",
+    "coreSha256": "fac43887d607ce2d9c11786c5deed3f2f980127d2003a7ee1726bbd26a6ea297",
+    "provinceManifestSha256": "100dff5c1b01fb6a300e746e81e7e79969c88e6487c8538615237d681f81dfaa",
+    "xizangShardSha256": "0abebe5f3dbafda8566431b3fe71142f90a50b45cf6aa067893c5a677361f72c",
+    "siteAppSha256": "3d43e019671a9bfd1b33781485e6f161576bee3c4da4366bc4911665faa092ce",
+    "appleDoubleCount": 0,
+    "temporaryFileCount": 0
+  },
+  "httpReadback": {
+    "baseUrl": "http://127.0.0.1:4177/",
+    "status": 200,
+    "dataSourceHeader": "mac_2T-mirror",
+    "masterBytes": 1822131744,
+    "masterSha256": "99494b12b3f3141db2d626f568cd8c33161a2d1af06d718d0ad291fde2499eed",
+    "coreSha256": "fac43887d607ce2d9c11786c5deed3f2f980127d2003a7ee1726bbd26a6ea297",
+    "provinceManifestSha256": "100dff5c1b01fb6a300e746e81e7e79969c88e6487c8538615237d681f81dfaa",
+    "xizangShardSha256": "0abebe5f3dbafda8566431b3fe71142f90a50b45cf6aa067893c5a677361f72c",
+    "siteAppSha256": "3d43e019671a9bfd1b33781485e6f161576bee3c4da4366bc4911665faa092ce"
+  },
+  "verification": {
+    "importReplay": "passed",
+    "unofficialHostRejected": "passed",
+    "browserShardContract": "passed",
+    "recommendationBoundaryContract": "passed",
+    "rootAndSiteRedlineParity": "passed",
+    "independentReview": "passed-after-three-findings-resolved",
+    "browserQa": "passed-v3270-counts-current-finding-recommendation-submit-no-site-console-errors"
+  },
+  "residualRisk": "西藏仍缺可计算一分一段、普通批全量投档/录取表、专业最低位次和高职专科投档数据；本条仍只用于招生计划核验。"
+}

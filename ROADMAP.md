@@ -1,0 +1,10 @@
+# 高考志愿网站数据路线图
+
+| 变更 | 阶段 | 进入条件 | 退出条件 | 验证 | 状态 | 记录 |
+|---|---|---|---|---|---|---|
+| v3.274 深圳大学2024-2025全国官方录取数据 | Phase 7 Deliver | 深圳大学招生网2个索引页和30个省份页面可复核，A/B类别与专项路径可识别 | 1,568条专业级记录合入主库，31省分片、普通推荐边界、mac_2T镜像和HTTP读回一致 | `node scripts/test-official-szu-import-v3274.mjs && node scripts/test-szu-recommendation-boundaries-v3274.mjs && node scripts/test-browser-runtime-shards-v3274.mjs` | 通过 | 仅补充深圳大学单校官方层，不代替省考试院全量投档/录取表；59条无公开最低位次记录保持不可计算 |
+| v3.273 西藏2026计划路径安全分流 | Phase 7 Deliver | 官方全量计划已入库，7,300条来源记录与v3.270更正可核验 | 限定资格计划不进入普通候选，前端、镜像、HTTP与回读边界一致 | `node scripts/test-recommendation-boundaries-v3273.mjs && node scripts/test-browser-runtime-shards-v3272.mjs` | 通过 | 不重复导入全量计划；军警、专项、预科、艺体、部队、对口和定向计划须确认资格后另行核验，且不生成录取概率 |
+| v3.272 西藏2025官方征集志愿计划与2026录取日程 | Phase 7 Deliver | 12次公告、23个附件及2026日程已核验，征集快照与录取分边界明确 | 主库、推荐边界、31省分片、mac_2T、HTTP、浏览器和独立Review守恒 | `node scripts/test-refresh-xizang-vacancy-records-v3272.mjs && node scripts/test-browser-runtime-shards-v3272.mjs && node scripts/test-recommendation-boundaries-v3272.mjs` | 通过 | 无Git仓库；2187条征集快照仅作历史补录信号，独立Review全部P1/P2已关闭，原子刷新失败保留旧输出 |
+| v3.271 北京2025官方高考分数分布 | Phase 7 Deliver | 官方页面与10页PDF可访问，347行可稳定解析，旧第三方队列可唯一替代 | 主库、31省分片、mac_2T镜像、HTTP与浏览器回读全部守恒 | `node scripts/test-browser-runtime-shards-v3271.mjs && node scripts/test-recommendation-boundaries-v3271.mjs` | 通过 | 无Git仓库；独立Review的P1/P2及浏览器学历路径/红线缺口已关闭，运行清单与三层sha256留证 |
+| v3.270 西藏2026三峡大学招生计划官方更正 | Phase 7 Deliver | 官方页面7894可访问，两张表字段可锁定，主库目标ID唯一 | 1对1更正、计划级红线、31省分片、镜像和HTTP回读全部通过 | `node scripts/test-browser-runtime-shards-v3270.mjs && node scripts/test-recommendation-boundaries-v3270.mjs` | 通过 | 无Git仓库；独立Review三项缺口已关闭，运行清单与三层sha256留证 |
+| v3.269 西藏2026军队院校面试体检控制线 | Phase 7 Deliver | 官方页面7928和图片可访问，6行可人工与OCR双重核对 | 主库、31省分片、mac_2T镜像和HTTP回读全部守恒 | `node scripts/test-browser-runtime-shards-v3269.mjs` | 通过 | 无Git仓库；独立Review发现并关闭清单SHA漂移，运行清单与sha256留证 |

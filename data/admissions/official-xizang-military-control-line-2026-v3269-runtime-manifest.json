@@ -1,0 +1,47 @@
+{
+  "version": "local-deterministic-v3.269-xizang-military-control2026-841776records",
+  "generatedAt": "2026-07-11T04:10:19Z",
+  "source": {
+    "url": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+    "publishedAt": "2026-07-05 12:02",
+    "publisher": "西藏自治区教育考试院"
+  },
+  "counts": {
+    "structuredRecords": 841776,
+    "rankConversions": 116309,
+    "sourceNotes": 5080,
+    "provinceShards": 31,
+    "newRecords": 6,
+    "xizangRecords": 26111,
+    "xizangRankConversions": 0,
+    "formalScoreMissingProvinces": ["西藏"]
+  },
+  "artifacts": {
+    "master": {"path": "site/data/knowledge.json", "bytes": 1822129232, "sha256": "e4d58f5331f042d8d93a5311c98ff169f5f7eb7b036f3c4542edd531290ae0c1"},
+    "core": {"path": "site/data/knowledge-core.json", "bytes": 14980715, "sha256": "802a29d1a1a34e8e1b98ab5a023eb73d884057577552480e47dd894c518c5e0c"},
+    "provinceManifest": {"path": "site/data/provinces/manifest.json", "bytes": 7131, "sha256": "c1f48b169e0ec88ccdeb0c99add9d7cf4356a2e95b8dea9f17b8e31822ad378c"},
+    "xizangShard": {"path": "site/data/provinces/xizang.json", "bytes": 24314362, "sha256": "8350f6836e3ae72c662a74b73d06ed0cf93755ab8e9dda131700f8bacb903f69"},
+    "import": {"path": "data/admissions/official-xizang-military-control-line-2026-v3269-import.json", "bytes": 17901, "sha256": "ee2569f4440d679a74a778523f5a4907e0e14af784982c0bfff0cde3bc926225"},
+    "page": {"path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html", "bytes": 7173, "sha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727"},
+    "image": {"path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png", "bytes": 26984, "sha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21"},
+    "ocr": {"path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json", "bytes": 6991, "sha256": "46ae3a450b00c0216bd27f912208ce25b567838040d5c4dd51dbc7765b440ad6"}
+  },
+  "verification": {
+    "importer": "passed",
+    "browserShardConservation": "passed",
+    "recommendationBoundary": "passed",
+    "mirror": "passed",
+    "httpReadback": "passed",
+    "independentReview": "passed_after_sha_fix"
+  },
+  "runtimeReadback": {
+    "url": "http://127.0.0.1:4177/",
+    "dataSourceHeader": "mac_2T-mirror",
+    "masterBytes": 1822129232,
+    "masterSha256": "e4d58f5331f042d8d93a5311c98ff169f5f7eb7b036f3c4542edd531290ae0c1",
+    "coreSha256": "802a29d1a1a34e8e1b98ab5a023eb73d884057577552480e47dd894c518c5e0c",
+    "provinceManifestSha256": "c1f48b169e0ec88ccdeb0c99add9d7cf4356a2e95b8dea9f17b8e31822ad378c",
+    "xizangShardSha256": "8350f6836e3ae72c662a74b73d06ed0cf93755ab8e9dda131700f8bacb903f69",
+    "appleDoubleFiles": 0
+  }
+}

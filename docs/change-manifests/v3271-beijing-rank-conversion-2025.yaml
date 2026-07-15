@@ -1,0 +1,103 @@
+change_id: "2026-07-11-v3271-beijing-rank-conversion-2025"
+title: "北京2025官方高考分数分布"
+phase: deliver
+status: completed
+execution_mode: full
+resume_mode: full
+resume_reason: "新增官方位次换算会影响主库、北京分片、推荐位次证据和mac_2T运行镜像。"
+last_updated: "2026-07-12T19:27:38Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "新增347条北京2025综合类官方位次换算。"
+  - surface: user
+    role: consumer
+    notes: "北京历史分数比较获得2025官方累计位次边界。"
+  - surface: operational
+    role: consumer
+    notes: "重建31省分片并同步mac_2T与HTTP运行层。"
+
+sot_map:
+  - info_name: "北京市2025年高考考生分数分布"
+    pattern: 4
+    source: "https://www.bjeea.cn/html/gkgz/tzgg/2025/0625/87165.html"
+    consumers:
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/beijing.json"
+        kind: runtime
+        sync_lag: generated
+    sync_mechanism: "Node导入器下载官方HTML/PDF并用pdftotext -raw解析，jq增量合并，分片构建器传播。"
+    desync_risk: medium
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "恢复v3.270 APFS快照并重建分片。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.270北京分片和推荐数据。"
+    - surface: operational
+      mode: 1
+      rationale: "重新镜像v3.270产物。"
+
+task_slices:
+  - id: "official-pdf-import"
+    scope: "官方HTML、PDF、raw文本、347行位次换算"
+    verification_command: "node scripts/import-official-beijing-rank-conversion-2025-v3271.mjs --use-cache"
+  - id: "master-and-shards"
+    scope: "主库增量合并、北京分片和rank source覆盖统计"
+    verification_command: "node scripts/test-browser-runtime-shards-v3271.mjs"
+  - id: "runtime-readback"
+    scope: "mac_2T、HTTP与浏览器回读"
+    verification_command: "GAOKAO_MIRROR_PROVENANCE=1 GAOKAO_MIRROR_SITE_ASSETS=1 GAOKAO_MIRROR_TOP_DATA=1 node scripts/mirror-runtime-to-mac2t.mjs"
+
+evidence_plan:
+  - type: contract_test
+    surface: information
+    status: verified
+    artifact_location: "data/admissions/official-beijing-rank-conversion-2025-v3271-import.json"
+    summary: "347行、分数连续和累计人数闭合。"
+    tier: critical
+  - type: regression_test
+    surface: user
+    status: verified
+    artifact_location: "scripts/test-browser-runtime-shards-v3271.mjs"
+    summary: "北京分片和全国数量守恒。"
+    tier: critical
+  - type: runtime_readback
+    surface: operational
+    status: verified
+    artifact_location: "data/admissions/official-beijing-rank-conversion-2025-v3271-runtime-manifest.json"
+    summary: "内部、镜像和HTTP哈希一致。"
+    tier: critical
+
+residual_risks:
+  - "北京2025低于380分按官方10分段发布，不能恢复为逐分位次。"
+  - "一分一段是同省同年位置证据，不直接等于院校或专业录取概率。"
+  - "西藏仍缺普通类可计算一分一段、省级全量投档/录取表、专业最低位次和高职专科投档数据。"
+
+next_action: "继续追西藏普通类官方一分一段、省级全量投档/录取表、专业最低位次和高职专科数据，并继续补齐各省最新年度正式表。"
+
+review_notes:
+  - severity: blocking_resolved
+    finding: "官方合并分段上界被显示为同分人数。"
+    resolution: "以scoreRange是否跨分数判断区间，并覆盖370/379、698/700、100/109端点。"
+  - severity: blocking_resolved
+    finding: "全量构建器不读取独立rankConversions数组。"
+    resolution: "新增splitAdmissionPayloadRecords并验证347条全部进入rank构建路径。"
+  - severity: non_blocking_resolved
+    finding: "记录缺sourceQuality，未来重建会少计官方位次并削弱官方去重优先级。"
+    resolution: "导入、主库、分片白名单和回归同时保留dataType/sourceQuality，typed/official均为347。"
+  - severity: browser_qa_resolved
+    finding: "北京650分本科画像混入专科记录，学费未知中外合作记录穿透家庭红线。"
+    resolution: "学历路径双向隔离；复合红线把学费未知合作项目按风险冲突处理。"
+  - severity: operational_resolved
+    finding: "一次jq -c定向修复把1.82GB主库压成单行，分片构建触发Invalid string length。"
+    resolution: "从硬链接快照用Node多行流式修复器重建，31省分片守恒且unknown为0。"
+
+handoff_narrative: "v3.271已完成并通过独立Reviewer。主库、mac_2T镜像和HTTP SHA-256均为83a1add1e5b46d472827926031092a06167e76558ff0a62a3f0ef028e19f5c5c；运行清单位于data/admissions/official-beijing-rank-conversion-2025-v3271-runtime-manifest.json。"

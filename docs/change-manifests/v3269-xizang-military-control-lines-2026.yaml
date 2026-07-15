@@ -1,0 +1,112 @@
+change_id: "2026-07-11-v3269-xizang-military-control-lines"
+title: "西藏2026军队院校面试体检控制线"
+phase: deliver
+status: completed
+execution_mode: full
+forced_full_trigger: null
+resume_mode: full
+resume_reason: "此前没有变更清单，且数据导入影响主库、用户推荐边界、浏览器分片和外盘镜像。"
+last_updated: "2026-07-11T04:10:19Z"
+
+authors:
+  - name: "kili"
+    role: human
+    identifier: "active-goal-owner"
+  - name: "codex"
+    role: ai
+    identifier: "v3269-implementer"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "新增6条西藏2026军队院校特殊路径control-line及一条官方来源说明。"
+  - surface: user
+    role: consumer
+    notes: "军队院校特殊路径可获得更准确的资格线提示；普通推荐必须继续排除。"
+  - surface: operational
+    role: consumer
+    notes: "重建31省分片并同步mac_2T运行镜像和HTTP服务。"
+
+sot_map:
+  - info_name: "西藏2026军队院校面试体检控制分数线"
+    pattern: 4
+    source: "http://zsks.edu.xizang.gov.cn/71/74/7928.html"
+    consumers:
+      - name: "data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/xizang.json"
+        kind: runtime
+        sync_lag: generated
+    sync_mechanism: "Node导入器保存HTML/图片/OCR证据，再由jq合并和分片构建器传播。"
+    desync_risk: medium
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "恢复v3.268主库并重建分片。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.268运行数据即可移除新增特殊路径提示。"
+    - surface: operational
+      mode: 1
+      rationale: "重新镜像v3.268产物。"
+
+task_slices:
+  - id: "official-import"
+    scope: "导入器、raw证据和结构化导入包"
+    review_plan: "核对页面元数据、图片尺寸/哈希、OCR标记和6行数值。"
+    verification_command: "node scripts/import-official-xizang-military-control-line-2026-v3269.mjs --use-cache"
+    commit_boundary: merged_with_next_slice
+  - id: "master-and-shards"
+    scope: "主库增量合并、版本计数和31省浏览器分片"
+    review_plan: "核对计数守恒、scope隔离、formal缺口和西藏分片。"
+    verification_command: "node scripts/test-browser-runtime-shards-v3269.mjs"
+    commit_boundary: merged_with_next_slice
+  - id: "mirror-readback"
+    scope: "mac_2T运行镜像与4177 HTTP回读"
+    review_plan: "比较内部、镜像和HTTP sha256及来源响应头。"
+    verification_command: "GAOKAO_MIRROR_PROVENANCE=1 GAOKAO_MIRROR_SITE_ASSETS=1 node scripts/mirror-runtime-to-mac2t.mjs"
+    commit_boundary: one_commit
+
+evidence_plan:
+  - type: contract_test
+    surface: information
+    status: verified
+    artifact_location: "data/admissions/official-xizang-military-control-line-2026-v3269-import.json"
+    summary: "6条记录的分数、科类、性别、A/B类和special-path-only字段。"
+    tier: critical
+  - type: regression_test
+    surface: user
+    status: verified
+    artifact_location: "scripts/test-recommendation-boundaries-v3269.mjs"
+    summary: "普通推荐不吸收特殊路径资格线。"
+    tier: critical
+  - type: runtime_readback
+    surface: operational
+    status: verified
+    artifact_location: "data/admissions/official-xizang-military-control-line-2026-v3269-runtime-manifest.json"
+    summary: "分片、镜像和HTTP哈希回读。"
+    tier: critical
+
+implementation_notes:
+  - type: discovery
+    description: "现有知识库只保存2026-06-28公告中分数线将另行发布的状态；考试院7928页面于2026-07-05正式公布6条资格线。"
+    scope_delta: none
+    recorded_at: "2026-07-11T03:20:00Z"
+
+review_notes:
+  - severity: blocking_resolved
+    finding: "独立Reviewer发现导入包重跑后runtime manifest仍记录旧SHA。"
+    resolution: "更新为ee2569f4440d679a74a778523f5a4907e0e14af784982c0bfff0cde3bc926225，重新镜像并回读。"
+  - severity: non_blocking_resolved
+    finding: "自定义URL缺少官方域名限制，分片测试未逐项锁定全部可靠性字段。"
+    resolution: "限定zsks.edu.xizang.gov.cn，并新增科类、性别、A/B类、scoreOnly、rankUnavailable、thresholdType和发布时间断言。"
+
+residual_risks:
+  - "西藏仍缺普通批全量投档/录取表、一分一段、专业最低位次和高职专科投档数据；继续保持usable而非strong。"
+  - "当前资格线仅适用于军队院校面试体检特殊路径，不代表最终录取。"
+
+next_action: "继续追西藏自治区教育考试院普通批全量投档/录取表、一分一段和高职专科数据。"

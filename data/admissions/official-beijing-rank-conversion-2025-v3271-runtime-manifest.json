@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-07-12T19:27:38Z",
+  "status": "verified",
+  "modelVersion": "local-deterministic-v3.271-beijing-rank2025-841776records",
+  "scope": "official-beijing-2025-rank-conversion-and-recommendation-boundary-hardening",
+  "counts": {
+    "structuredRecords": 841776,
+    "rankConversionRecords": 116656,
+    "sourceNotes": 5082,
+    "provinceShards": 31,
+    "schools": 10514,
+    "beijingRecords": 6442,
+    "beijingRankConversions": 688,
+    "newBeijing2025RankConversions": 347,
+    "exactScoreRows": 318,
+    "groupedScoreRows": 29,
+    "officialTypedNewRanks": 347,
+    "unknownRecords": 0,
+    "unknownRankConversions": 0
+  },
+  "officialSource": {
+    "title": "北京市2025年高考考生分数分布",
+    "publisher": "北京教育考试院",
+    "url": "https://www.bjeea.cn/html/gkgz/tzgg/2025/0625/87165.html",
+    "pdfUrl": "https://www.bjeea.cn/uploads/soft/250625/172-2506250Q456.pdf",
+    "publishedAt": "2025-06-25",
+    "pageCount": 10,
+    "pageSha256": "79b375f0b40dc2746da4004e13d769652aba6e4ebb28aa02fea9fc780d0d47c9",
+    "pdfSha256": "338827fa23721b1a0450f7052f35d35b5b8502b8e80e462c724d88ec34b80a6c",
+    "rawTextSha256": "f2cddc83e55ffaccbb146537843a71179cea718c73370fc4ca9d999ded5ed7c9"
+  },
+  "rankContract": {
+    "scoreRange": { "min": 100, "max": 750 },
+    "score650": { "rankStart": 3102, "rankEnd": 3203, "sameScoreCount": 102 },
+    "groupedRange370To379": { "rankStart": 60486, "rankEnd": 61270, "rangeCount": 785 },
+    "finalCumulativeCandidates": 65434,
+    "supersededSourceId": "dxsbb-rank-8df9f3efff",
+    "sourceQuality": "official-beijing-2025-rank-conversion-pdf-text-validated",
+    "groupedRangePolicy": "官方合并分数段只显示同区间人数和区间位次，不伪造逐分位次。"
+  },
+  "recommendationBoundary": {
+    "beijingEliteProfileVocationalRecords": 0,
+    "beijingVocationalProfileRecords": 586,
+    "vocationalUniversityBachelorRecordsPreserved": 10,
+    "vocationalUniversityCollegeRecordsIsolated": 11,
+    "unknownTuitionCooperativePolicy": "命中不接受高学费中外合作红线时，学费缺失的中外合作记录按风险冲突排除。"
+  },
+  "artifacts": {
+    "master": {
+      "path": "site/data/knowledge.json",
+      "bytes": 1822287096,
+      "sha256": "83a1add1e5b46d472827926031092a06167e76558ff0a62a3f0ef028e19f5c5c"
+    },
+    "browserCore": {
+      "path": "site/data/knowledge-core.json",
+      "bytes": 14983448,
+      "sha256": "adbaec3027366e45a2d808e73f6babbcbc2a7f0bb7a0bfcd03aa2aa3075e7e42"
+    },
+    "provinceManifest": {
+      "path": "site/data/provinces/manifest.json",
+      "bytes": 7121,
+      "sha256": "a9fb75f9b7ec10d6c997d563e314e6b5fa1ce50022f2f817783bff42f34ddcf7"
+    },
+    "beijingShard": {
+      "path": "site/data/provinces/beijing.json",
+      "bytes": 6384305,
+      "sha256": "b79c576a4cbd9954cc2abdcdb9331fc36732bda1c34c489539fd585b14ca69c2"
+    },
+    "xizangShard": {
+      "path": "site/data/provinces/xizang.json",
+      "bytes": 24449545,
+      "sha256": "750e41b1a6d26a0ee70a44a3b311acf2b5aa031850527425832546348f6fa0b0"
+    },
+    "siteApp": {
+      "path": "site/assets/app.js",
+      "bytes": 101761,
+      "sha256": "eb84c82c10f3106d183548ba953d8044fa38b779646a55c62aab4080231d3c08"
+    },
+    "rootApp": {
+      "path": "app.js",
+      "bytes": 96064,
+      "sha256": "d64f200e95b50e16e3d9a7ce4aa8f29a9d5c149d6181b24388fa545be93c5489"
+    },
+    "importPackage": {
+      "path": "data/admissions/official-beijing-rank-conversion-2025-v3271-import.json",
+      "bytes": 146777,
+      "sha256": "79c6f866be62822e3ebf754d285cc97bab1c31e7a2ecacb067317ed01c5b4955"
+    }
+  },
+  "mirrorReadback": {
+    "root": "/Volumes/mac_2T/gaokao_zhiyuan_site_runtime",
+    "masterSha256": "83a1add1e5b46d472827926031092a06167e76558ff0a62a3f0ef028e19f5c5c",
+    "topDataSha256": "83a1add1e5b46d472827926031092a06167e76558ff0a62a3f0ef028e19f5c5c",
+    "coreSha256": "adbaec3027366e45a2d808e73f6babbcbc2a7f0bb7a0bfcd03aa2aa3075e7e42",
+    "provinceManifestSha256": "a9fb75f9b7ec10d6c997d563e314e6b5fa1ce50022f2f817783bff42f34ddcf7",
+    "beijingShardSha256": "b79c576a4cbd9954cc2abdcdb9331fc36732bda1c34c489539fd585b14ca69c2",
+    "xizangShardSha256": "750e41b1a6d26a0ee70a44a3b311acf2b5aa031850527425832546348f6fa0b0",
+    "siteAppSha256": "eb84c82c10f3106d183548ba953d8044fa38b779646a55c62aab4080231d3c08",
+    "importPackageSha256": "79c6f866be62822e3ebf754d285cc97bab1c31e7a2ecacb067317ed01c5b4955",
+    "appleDoubleCount": 0,
+    "temporaryFileCount": 0
+  },
+  "httpReadback": {
+    "baseUrl": "http://127.0.0.1:4177/",
+    "status": 200,
+    "dataSourceHeader": "mac_2T-mirror",
+    "masterBytes": 1822287096,
+    "masterSha256": "83a1add1e5b46d472827926031092a06167e76558ff0a62a3f0ef028e19f5c5c",
+    "coreSha256": "adbaec3027366e45a2d808e73f6babbcbc2a7f0bb7a0bfcd03aa2aa3075e7e42",
+    "provinceManifestSha256": "a9fb75f9b7ec10d6c997d563e314e6b5fa1ce50022f2f817783bff42f34ddcf7",
+    "beijingShardSha256": "b79c576a4cbd9954cc2abdcdb9331fc36732bda1c34c489539fd585b14ca69c2",
+    "xizangShardSha256": "750e41b1a6d26a0ee70a44a3b311acf2b5aa031850527425832546348f6fa0b0",
+    "siteAppSha256": "eb84c82c10f3106d183548ba953d8044fa38b779646a55c62aab4080231d3c08"
+  },
+  "verification": {
+    "importReplay": "passed",
+    "unofficialInitialHostRejected": "passed",
+    "unofficialRedirectHostRejected": "passed",
+    "cachedRawHashesPinned": "passed",
+    "fullBuildRankIngestion": "passed-347-official-typed-records",
+    "browserShardContract": "passed",
+    "recommendationBoundaryContract": "passed",
+    "independentReview": "passed-on-third-review-run-after-all-p1-p2-from-first-two-runs-were-resolved",
+    "browserQa": "passed-final-v3271-counts-beijing-650-rank-3203-no-vocational-no-redline-conflict-no-console-errors"
+  },
+  "residualRisk": "北京2025低分段部分仅按官方10分区间发布，不能恢复为逐分位次；位次换算不等同于院校录取概率。西藏仍缺可计算一分一段、普通批全量投档/录取表、专业最低位次和高职专科投档数据。"
+}

@@ -1,0 +1,365 @@
+{
+  "dataset": "official-xizang-military-control-line-2026-v3269-import",
+  "generatedAt": "2026-07-11T04:08:16.493Z",
+  "scope": "西藏2026军队院校面试体检控制分数线（特殊路径）",
+  "notes": [
+    "本文件由 scripts/import-official-xizang-military-control-line-2026-v3269.mjs 自动生成。",
+    "原始页面、图片和macOS Vision OCR结果均本地留存并带sha256。",
+    "六条资格线不替代普通批投档/录取分，也不生成最低位次或录取概率。"
+  ],
+  "sourceNotes": [
+    {
+      "id": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "title": "2026年军队院校在藏招收普通高中毕业生面试体检控制分数线",
+      "publisher": "西藏自治区教育考试院",
+      "url": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "imageUrl": "http://zsks.edu.xizang.gov.cn/fs/2/image/20260705/1783224146026.png",
+      "publishedAt": "2026-07-05 12:02",
+      "quality": "official-xizang-2026-military-interview-medical-control-line-image-vision-verified",
+      "usage": "官方图片表抽取西藏2026年军队院校面试体检控制分数线6条，按文史/理工、性别和A/B类隔离，仅作特殊路径资格边界。",
+      "parsedRecords": 6,
+      "scoreRange": {
+        "min": 376,
+        "max": 638
+      },
+      "rawFiles": [
+        {
+          "path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+          "bytes": 7173,
+          "sha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727"
+        },
+        {
+          "path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+          "bytes": 26984,
+          "sha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+          "width": 771,
+          "height": 435
+        },
+        {
+          "path": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+          "bytes": 6991,
+          "sha256": "46ae3a450b00c0216bd27f912208ce25b567838040d5c4dd51dbc7765b440ad6"
+        }
+      ],
+      "ocrAudit": {
+        "observationCount": 29,
+        "recoveredScores": [
+          395,
+          460,
+          376,
+          591,
+          415,
+          638
+        ]
+      },
+      "cautions": [
+        "该表是军队院校面试体检入围资格线，不是普通批投档线、录取最低分、一分一段或最低位次。",
+        "全部记录保持formalScoreScope=special-path-only，不参与西藏普通正式分数闭合，也不进入普通推荐候选池。",
+        "源表未公开位次，系统不生成假位次或录取概率。"
+      ],
+      "file": "data/admissions/official-xizang-military-control-line-2026-v3269-import.json"
+    }
+  ],
+  "records": [
+    {
+      "id": "2026-xz-military-control-2d236334a0f5769eb5",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "历史类",
+      "sourceSubjectRaw": "文史",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "男",
+        "A类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "文史/男/A类",
+      "electiveRequirement": "科类：文史；性别：男；生源类别：A类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 395,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "男",
+      "candidateClass": "A类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    },
+    {
+      "id": "2026-xz-military-control-f186cd480436ac4e45",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "历史类",
+      "sourceSubjectRaw": "文史",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "男",
+        "B类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "文史/男/B类",
+      "electiveRequirement": "科类：文史；性别：男；生源类别：B类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 460,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "男",
+      "candidateClass": "B类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    },
+    {
+      "id": "2026-xz-military-control-464d716efdb16073ed",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "物理类",
+      "sourceSubjectRaw": "理工",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "男",
+        "A类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "理工/男/A类",
+      "electiveRequirement": "科类：理工；性别：男；生源类别：A类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 376,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "男",
+      "candidateClass": "A类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    },
+    {
+      "id": "2026-xz-military-control-18084c3d89c1684f57",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "物理类",
+      "sourceSubjectRaw": "理工",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "男",
+        "B类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "理工/男/B类",
+      "electiveRequirement": "科类：理工；性别：男；生源类别：B类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 591,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "男",
+      "candidateClass": "B类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    },
+    {
+      "id": "2026-xz-military-control-254378e61ed0c3d4e5",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "物理类",
+      "sourceSubjectRaw": "理工",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "女",
+        "A类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "理工/女/A类",
+      "electiveRequirement": "科类：理工；性别：女；生源类别：A类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 415,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "女",
+      "candidateClass": "A类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    },
+    {
+      "id": "2026-xz-military-control-7c5bd2f01538b73bb7",
+      "province": "西藏",
+      "year": 2026,
+      "subjectType": "物理类",
+      "sourceSubjectRaw": "理工",
+      "batch": "提前批军队院校面试体检资格线",
+      "schoolName": "西藏自治区2026年军队院校招生面试体检控制分数线",
+      "schoolCode": null,
+      "schoolTags": [
+        "西藏官方资格线",
+        "军队院校",
+        "特殊路径",
+        "女",
+        "B类"
+      ],
+      "dataType": "control-line",
+      "majorName": "军队院校面试体检控制分数线",
+      "majorCode": null,
+      "majorGroup": "理工/女/B类",
+      "electiveRequirement": "科类：理工；性别：女；生源类别：B类",
+      "disciplineCodes": [
+        "11"
+      ],
+      "planCount": null,
+      "minScore": 638,
+      "minRankStart": null,
+      "minRankEnd": null,
+      "rankRangeText": "",
+      "rankUnavailable": true,
+      "scoreOnly": true,
+      "candidateGender": "女",
+      "candidateClass": "B类",
+      "thresholdType": "军队院校面试体检控制分数线",
+      "sourceId": "official-xizang-military-interview-medical-control-line-2026-v3269",
+      "sourceQuality": "official-xizang-2026-military-interview-medical-control-line-image",
+      "sourceUrl": "http://zsks.edu.xizang.gov.cn/71/74/7928.html",
+      "sourceFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/page-7928.html",
+      "sourceImageFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line.png",
+      "sourceOcrFile": "data/admissions/raw/official-xizang-military-control-line-2026-v3269/military-interview-medical-control-line-ocr.json",
+      "sourcePublishedAt": "2026-07-05 12:02",
+      "pageSha256": "33deb9906c4beadaaadbedc0aa61bf8bcfc03ca398121266eb264736b1291727",
+      "imageSha256": "c97e20c78c9f9b0e7e882e99e817ce642a2823ee47bfe9d573d1c96fa54d8c21",
+      "formalScoreScope": "special-path-only",
+      "cautions": [
+        "本记录是军队院校面试体检资格控制线，不是普通批次院校投档线、录取最低分、专业最低位次或录取概率证据。",
+        "达到该线只表示具备参加相应面试体检的资格边界，最终仍取决于政治考核、面试、体检、招生计划和院校录取规则。",
+        "A类/B类、科类和性别必须按官方原表分别匹配，不得跨类别回退或合并使用。"
+      ]
+    }
+  ]
+}

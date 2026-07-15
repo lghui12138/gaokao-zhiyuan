@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>高考志愿本地知识库</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">志</div>
+          <div>
+            <h1>高考志愿本地知识库</h1>
+            <p id="generatedAt">正在载入资料</p>
+          </div>
+        </div>
+        <nav class="nav" aria-label="主导航">
+          <button class="nav-btn active" data-view="overview">总览</button>
+          <button class="nav-btn" data-view="recommend">智能推荐</button>
+          <button class="nav-btn" data-view="disciplines">专业门类</button>
+          <button class="nav-btn" data-view="rules">规则与风险</button>
+          <button class="nav-btn" data-view="rounds">整合轮次</button>
+          <button class="nav-btn" data-view="audio">音频转写</button>
+          <button class="nav-btn" data-view="sources">资料库</button>
+        </nav>
+        <div class="sidebar-note">
+          <strong>本地版</strong>
+          <span>资料来自指定的两个 mac_2T 目录；正文抽取、索引和分类结果保存在本项目。</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="toolbar" aria-label="检索和筛选">
+          <label class="search-box">
+            <span>检索</span>
+            <input id="searchInput" type="search" placeholder="专业、院校、平行志愿、07理学..." />
+          </label>
+          <label class="select-box">
+            <span>门类</span>
+            <select id="disciplineFilter">
+              <option value="">全部门类</option>
+            </select>
+          </label>
+          <label class="select-box">
+            <span>主题</span>
+            <select id="domainFilter">
+              <option value="">全部主题</option>
+            </select>
+          </label>
+        </section>
+
+        <section id="view-overview" class="view active-view"></section>
+        <section id="view-recommend" class="view"></section>
+        <section id="view-disciplines" class="view"></section>
+        <section id="view-rules" class="view"></section>
+        <section id="view-rounds" class="view"></section>
+        <section id="view-audio" class="view"></section>
+        <section id="view-sources" class="view"></section>
+      </main>
+    </div>
+
+    <template id="emptyTemplate">
+      <div class="empty-state">
+        <h2>没有匹配结果</h2>
+        <p>换一个关键词，或者清空门类/主题筛选。</p>
+      </div>
+    </template>
+
+    <script type="module" src="./assets/app.js"></script>
+  </body>
+</html>

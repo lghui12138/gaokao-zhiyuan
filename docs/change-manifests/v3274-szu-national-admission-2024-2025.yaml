@@ -1,0 +1,64 @@
+change_id: "2026-07-15-v3274-szu-national-admission-2024-2025"
+title: "深圳大学 2024-2025 全国录取数据"
+phase: deliver
+status: complete
+execution_mode: full
+resume_mode: full
+resume_reason: "30个官方省份页面会同时扩充全国单校边界、专业趋势、主库、分片与镜像。"
+last_updated: "2026-07-15T09:20:00Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "深圳大学招生网30个省份HTML、分专业最低分和公开最低位次。"
+  - surface: user
+    role: consumer
+    notes: "全国画像得到深圳大学的可解释单校专业候选和趋势。"
+  - surface: operational
+    role: consumer
+    notes: "主库、31省浏览器分片、mac_2T镜像与HTTP运行层。"
+
+sot_map:
+  - info_name: "深圳大学本科招生网历年分数"
+    pattern: 4
+    source: "https://zs.szu.edu.cn/index/lnfs/lnfs2.htm"
+    consumers:
+      - name: "data/admissions/official-national-school-admission-2024-2025-v3274-szu-import.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/*.json"
+        kind: runtime
+        sync_lag: generated
+    sync_mechanism: "Node下载官方索引和省份HTML，在APFS解析与审计；jq原子合并主库并重建浏览器分片。"
+    desync_risk: high
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "保留合并前APFS主库备份，失败不覆盖现有运行层。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.273前端与分片。"
+    - surface: operational
+      mode: 1
+      rationale: "用核验通过的主库重建并定向同步镜像。"
+
+task_slices:
+  - id: "source-import"
+    scope: "索引、30省页面、专业行、最低分、最低位次、路径与A/B类别"
+    verification_command: "node scripts/import-official-national-school-admission-2024-2025-v3274-szu.mjs --use-cache"
+  - id: "import-audit"
+    scope: "官方来源、年份、省份、分数/位次字段、特殊路径与西藏类别"
+    verification_command: "node scripts/test-official-szu-import-v3274.mjs"
+  - id: "runtime-refresh"
+    scope: "主库、31省分片、镜像、HTTP和推荐边界"
+    verification_command: "node scripts/build-browser-runtime-shards.mjs && node scripts/test-browser-runtime-shards-v3274.mjs && node scripts/test-recommendation-boundaries-v3273.mjs"
+
+residual_risks:
+  - "学校官网单校分数不是省级全量投档/录取表。"
+  - "页面未公开最低位次的行必须保持rankUnavailable，不能生成录取概率。"

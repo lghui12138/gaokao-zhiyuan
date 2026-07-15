@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "local-deterministic-v3.275-hnu2024-846432records",
+  "releaseTag": "data-v3.275",
+  "generatedAt": "2026-07-15T11:56:23Z",
+  "browserRuntime": {
+    "mode": "github-release-gzip-on-demand",
+    "coreAsset": "knowledge-core.json.gz",
+    "manifestAsset": "manifest.json.gz",
+    "shardAssetPattern": "<province-shard>.json.gz"
+  },
+  "fullRestore": {
+    "asset": "knowledge-v3.275.json.gz",
+    "script": "node scripts/restore-runtime-from-github-release.mjs"
+  },
+  "provenance": {
+    "asset": "official-provenance-v3.275.tar.gz"
+  },
+  "assets": [
+    {
+      "file": "anhui.json.gz",
+      "bytes": 651678,
+      "sha256": "f7973d1d9a6c3548d5076ab4d70e9d11f5ce051a50d2e57e48038db16bdd5827"
+    },
+    {
+      "file": "beijing.json.gz",
+      "bytes": 264837,
+      "sha256": "416b4e2272e3c27fa709e8855f2bf12cb9c2fb9ec36c9da0dff141259174ccde"
+    },
+    {
+      "file": "chongqing.json.gz",
+      "bytes": 2720324,
+      "sha256": "8ae91fc2f9b49370106d2bbb749a1ebe234a16a0f47f5a14a575210d3bba654e"
+    },
+    {
+      "file": "fujian.json.gz",
+      "bytes": 814971,
+      "sha256": "15fe6ca8f7170d46c5c8ad02a89ac82d30a44405ee089691d58b896d2abf92d9"
+    },
+    {
+      "file": "gansu.json.gz",
+      "bytes": 559983,
+      "sha256": "1361ec5b69fd86bfd8eb4148ccf1d8918c6d4d3fee9a7a2b4d15f4e1694e82fa"
+    },
+    {
+      "file": "guangdong.json.gz",
+      "bytes": 979483,
+      "sha256": "3138ecc3a82e3602242e4113eb37be477257bf67fe98680555e367b05f531ed9"
+    },
+    {
+      "file": "guangxi.json.gz",
+      "bytes": 706532,
+      "sha256": "24d843f4c2f2a7d838f36f7345e7e4a8033dfebbfc60175280fd3fcadcf8c175"
+    },
+    {
+      "file": "guizhou.json.gz",
+      "bytes": 3240226,
+      "sha256": "20b6270d0f912e623c91f2354cfdd0b5a9c7f796cbe4762ddf4ce1d6fe44e707"
+    },
+    {
+      "file": "hainan.json.gz",
+      "bytes": 467292,
+      "sha256": "5bc933841b17973e9afa2dca1e19ab856b157049dbfb7ae3b6fbfe77422e443a"
+    },
+    {
+      "file": "hebei.json.gz",
+      "bytes": 2488008,
+      "sha256": "4e40431a5d1e9849eabec0f356b0f0fc9ea1029d480c85be65cb526fb9f0bd45"
+    },
+    {
+      "file": "heilongjiang.json.gz",
+      "bytes": 595987,
+      "sha256": "b47135e1e0d74fe09ca4b805fc53c096d094878454175b183f4b15ebd548cf40"
+    },
+    {
+      "file": "henan.json.gz",
+      "bytes": 999254,
+      "sha256": "0bfe4b5851c43bb8a7324f665b6591f691f0c06217e5844a55d2ca7fb18e43dc"
+    },
+    {
+      "file": "hubei.json.gz",
+      "bytes": 594874,
+      "sha256": "96ee01e8cbbcdf7314ca0f7c97c725a926f49853f3f9b610ad1848ee118f5d91"
+    },
+    {
+      "file": "hunan.json.gz",
+      "bytes": 1058756,
+      "sha256": "9f1d31b2778dd020a46eb29febc8a49f8e085556fbac3afaa27144e4c39b632d"
+    },
+    {
+      "file": "inner-mongolia.json.gz",
+      "bytes": 694673,
+      "sha256": "fe3c92abd6208334c09c6ca19dc37dfbd04d7cdc20668e423a38f91c9848e6e9"
+    },
+    {
+      "file": "jiangsu.json.gz",
+      "bytes": 911375,
+      "sha256": "5a37d54ee05cdebde5caddb1df0fa81f10f3d6e76570a2fc175ff4221dc7fc15"
+    },
+    {
+      "file": "jiangxi.json.gz",
+      "bytes": 571860,
+      "sha256": "f21d25a67986725300d1b9aaf0498add25c9114d00a660892742b10c6dfb94a2"
+    },
+    {
+      "file": "jilin.json.gz",
+      "bytes": 2731985,
+      "sha256": "a2803e6ec50d46fc851c1e9c9fe75d4ff4e301ce632dafb11b3f0b310f4ac2bf"
+    },
+    {
+      "file": "knowledge-core.json.gz",
+      "bytes": 2356930,
+      "sha256": "8552eb75eb4f41ff23e73ef92325b0efd7bf4d37b19207131c8b071d18d2ad43"
+    },
+    {
+      "file": "knowledge-v3.275.json.gz",
+      "bytes": 63524974,
+      "sha256": "f842db898597f40dbe94043ea0b9f712c5ed5afa9003171c99e9224d7fa72dfb"
+    },
+    {
+      "file": "liaoning.json.gz",
+      "bytes": 1304586,
+      "sha256": "b70954dca5694ea21c092040ba5bb3bc65342806aff45f806761752f7dde5e90"
+    },
+    {
+      "file": "manifest.json.gz",
+      "bytes": 2527,
+      "sha256": "f18db20214fe2c1c03c0c5246688c212242b5510869355a20fdcf87c14c36760"
+    },
+    {
+      "file": "ningxia.json.gz",
+      "bytes": 359069,
+      "sha256": "2196eaee45f9e4bd7d81393706a42041b70f72471a55b46a2f65f27e486fd3e0"
+    },
+    {
+      "file": "official-provenance-v3.275.tar.gz",
+      "bytes": 101146916,
+      "sha256": "e68d23b9cc6054de63d27e7c7b6263a00746087ea9c7aedb9fa68d5647945b07"
+    },
+    {
+      "file": "qinghai.json.gz",
+      "bytes": 257703,
+      "sha256": "16e814fa445b2cc938d73f7aed99cb5a18590bb26d5d3839ebacc70fcd748792"
+    },
+    {
+      "file": "shaanxi.json.gz",
+      "bytes": 659764,
+      "sha256": "b644e965c56e3690cd5e1917296b923f3857a7eaa0fd5c1587a193e63ac36b57"
+    },
+    {
+      "file": "shandong.json.gz",
+      "bytes": 5532796,
+      "sha256": "7f16ef861a165ca807f46c6100c8f524081a37ce34c3decebda4bd4783e9a72d"
+    },
+    {
+      "file": "shanghai.json.gz",
+      "bytes": 226688,
+      "sha256": "b342124bdbcfebdbd72c81c86b7deaa67977475624d57000e6224e18d48440c4"
+    },
+    {
+      "file": "shanxi.json.gz",
+      "bytes": 712489,
+      "sha256": "49ad296322ff5e27ae57c7a6fbf49f0ec31f45c0765ac5768438e16aba4eceff"
+    },
+    {
+      "file": "sichuan.json.gz",
+      "bytes": 664212,
+      "sha256": "588946222cdb953bb0c22f5e4cef289d0432551132324242362cd8c8e411febe"
+    },
+    {
+      "file": "tianjin.json.gz",
+      "bytes": 369347,
+      "sha256": "f4adf44852b07a3ebc816bfa21af405080bd1242569f91546f36794474bf6642"
+    },
+    {
+      "file": "xinjiang.json.gz",
+      "bytes": 410709,
+      "sha256": "fbcfc59eb73ee6f581c6158d155a9ba84a1068366a933d781d16cfd2b312223f"
+    },
+    {
+      "file": "xizang.json.gz",
+      "bytes": 1114285,
+      "sha256": "4480b3c593e44a6870bfdf777f8826a9c5c888edff328a476e05ac1cef0d85ca"
+    },
+    {
+      "file": "yunnan.json.gz",
+      "bytes": 638530,
+      "sha256": "7cdb75feea666bfca3f20586035afef68b2de08f2ecf36d95cd245975f8c4683"
+    },
+    {
+      "file": "zhejiang.json.gz",
+      "bytes": 5768293,
+      "sha256": "785d5c34a734f7953e87f5132dea4d30b3739b8078a6fdfb85998a3bc6f1a0ea"
+    }
+  ]
+}

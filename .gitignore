@@ -1,0 +1,17 @@
+# macOS and editor noise
+.DS_Store
+._*
+.idea/
+.vscode/
+
+# Temporary work and historical local rollback copies
+tmp/
+backups/
+data/knowledge*.json
+site/data/
+
+# Raw official evidence is published as a versioned GitHub Release asset.
+data/admissions/raw/
+
+# External-disk runtime mirrors are intentionally outside this repository.
+mirror-manifest*.json

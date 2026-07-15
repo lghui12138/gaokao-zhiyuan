@@ -1,0 +1,110 @@
+change_id: "2026-07-15-v3272-xizang-vacancy-plans-2025"
+title: "西藏2025官方征集志愿计划与2026录取日程"
+phase: deliver
+status: completed
+execution_mode: full
+resume_mode: full
+resume_reason: "新增省级官方征集计划会影响主库、西藏分片、低分推荐消费边界和mac_2T运行镜像。"
+last_updated: "2026-07-14T22:35:51Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "接入12次公告、23个附件、征集专业快照和2026录取日程。"
+  - surface: user
+    role: consumer
+    notes: "基础段展示严格降级的征集机会，并展示本省数据新鲜度。"
+  - surface: operational
+    role: consumer
+    notes: "重建31省分片并同步mac_2T与HTTP运行层。"
+
+sot_map:
+  - info_name: "西藏2025普通高校招生征集志愿计划"
+    pattern: 4
+    source: "https://gaokao.chsi.com.cn/gkxx/zc/ss?regionId=086540000"
+    consumers:
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/xizang.json"
+        kind: runtime
+        sync_lag: generated
+      - name: "site/assets/app.js"
+        kind: user
+        sync_lag: runtime
+    sync_mechanism: "Node下载CHSI转载的考试院公告及CHEI附件，解析DOCX/XLS，Node多行流式原子刷新，分片构建器传播。"
+    desync_risk: high
+  - info_name: "西藏2026普通高校招生录取工作进度计划"
+    pattern: 4
+    source: "https://gaokao.chsi.com.cn/gkxx/zc/ss/202607/20260713/2293870888.html"
+    consumers:
+      - name: "site/assets/app.js"
+        kind: user
+        sync_lag: runtime
+    sync_mechanism: "来源注保存六个批次的开始/结束日期，界面按当前日期解释发布阶段。"
+    desync_risk: medium
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "恢复v3.271 APFS硬链接快照并重建分片。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.271推荐脚本和西藏分片。"
+    - surface: operational
+      mode: 1
+      rationale: "重新镜像v3.271产物。"
+
+task_slices:
+  - id: "source-import"
+    scope: "12个公告、23个附件、DOCX/XLS解析和来源审计"
+    verification_command: "node scripts/import-official-xizang-vacancy-plans-2025-v3272.mjs --use-cache"
+  - id: "master-and-shards"
+    scope: "主库增量合并、西藏分片、计数和字段语义"
+    verification_command: "node scripts/test-browser-runtime-shards-v3272.mjs"
+  - id: "atomic-refresh"
+    scope: "流式刷新成功、失败保留旧输出、路径冲突和零临时残留"
+    verification_command: "node scripts/test-refresh-xizang-vacancy-records-v3272.mjs"
+  - id: "recommendation-boundaries"
+    scope: "征集机会、学历路径、特殊入口和数据新鲜度"
+    verification_command: "node scripts/test-recommendation-boundaries-v3272.mjs"
+  - id: "runtime-readback"
+    scope: "mac_2T、HTTP与浏览器回读"
+    verification_command: "GAOKAO_MIRROR_PROVENANCE=1 GAOKAO_MIRROR_SITE_ASSETS=1 GAOKAO_MIRROR_TOP_DATA=1 node scripts/mirror-runtime-to-mac2t.mjs"
+
+evidence_plan:
+  - type: contract_test
+    surface: information
+    status: verified
+    artifact_location: "data/admissions/official-xizang-vacancy-plans-2025-v3272-import.json"
+    summary: "公告、附件、计划合计、普通/特殊路径和资格线契约。"
+    tier: critical
+  - type: regression_test
+    surface: user
+    status: verified
+    artifact_location: "scripts/test-recommendation-boundaries-v3272.mjs"
+    summary: "征集候选严格降级、学历路径和发布时间差。"
+    tier: critical
+  - type: runtime_readback
+    surface: operational
+    status: verified
+    artifact_location: "data/admissions/official-xizang-vacancy-plans-2025-v3272-runtime-manifest.json"
+    summary: "内部、镜像和HTTP哈希一致。"
+    tier: critical
+
+residual_risks:
+  - "征集计划是每轮填报前的剩余计划快照，多轮重复不得相加为年度招生数。"
+  - "资格分数线不是投档/录取最低分，不能用于录取概率。"
+  - "西藏仍缺普通类公开可计算一分一段、省级全量投档/录取表和专业最低位次。"
+
+next_action: "继续按正式数据缺口优先级推进下一省的一分一段、省级全量投档/录取表和专业最低位次；保持全国31省统一入口与省级证据分层。"
+
+review_notes:
+  - "首轮关闭缓存衍生CSV信任、高分画像混入高职、边境专项漏分流、资格线越界和专业同名重复键。"
+  - "后续关闭流式刷新失败后残留目标文件、三路径别名冲突，以及原子rename后才读取audit造成的失败状态漂移。"
+  - "最终浏览器回读发现并关闭资格说明连续标点，新增Node断言和脚本缓存版本参数。"
+  - "最终独立只读Reviewer结论PASS，无未关闭P1/P2。"
+
+handoff_narrative: "v3.272已完成：31省全国入口保持843963条记录，西藏新增2187条官方征集快照并严格降级为历史补录信号；运行清单和完成报告可作为下一轮正式数据补齐的续跑基线。"

@@ -1,0 +1,96 @@
+change_id: "2026-07-11-v3270-xizang-ctgu-plan-correction"
+title: "西藏2026三峡大学招生计划官方更正"
+phase: deliver
+status: completed
+execution_mode: full
+resume_mode: full
+resume_reason: "更正影响主库来源真值、浏览器分片、推荐红线和外盘运行镜像。"
+last_updated: "2026-07-11T04:57:48Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "对唯一招生计划记录执行1对1更正并保存官方HTML证据。"
+  - surface: user
+    role: consumer
+    notes: "更正后的院校身份、限制和学费红线进入计划推荐。"
+  - surface: operational
+    role: consumer
+    notes: "重建31省分片并同步mac_2T运行镜像和HTTP服务。"
+
+sot_map:
+  - info_name: "西藏2026三峡大学招生计划更正"
+    pattern: 4
+    source: "http://zsks.edu.xizang.gov.cn/71/74/7894.html"
+    consumers:
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/xizang.json"
+        kind: runtime
+        sync_lag: generated
+    sync_mechanism: "Node导入器保存和校验官方HTML，jq唯一键原位替换，分片构建器传播字段。"
+    desync_risk: medium
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "恢复v3.269主库快照并重建分片。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.269前端和运行数据。"
+    - surface: operational
+      mode: 1
+      rationale: "重新镜像v3.269产物。"
+
+task_slices:
+  - id: "official-correction-import"
+    scope: "官方HTML、结构化更正包和唯一目标断言"
+    review_plan: "核对前后院校代码/名称以及所有不变字段。"
+    verification_command: "node scripts/import-official-xizang-three-gorges-plan-correction-2026-v3270.mjs --use-cache"
+  - id: "recommendation-boundary"
+    scope: "计划级高学费中外合作红线与用户提示"
+    review_plan: "验证冲突计划被排除、普通三峡大学计划保留。"
+    verification_command: "node scripts/test-recommendation-boundaries-v3270.mjs"
+  - id: "runtime-readback"
+    scope: "31省分片、mac_2T镜像和HTTP回读"
+    review_plan: "比较内部、镜像和HTTP sha256及来源响应头。"
+    verification_command: "node scripts/test-browser-runtime-shards-v3270.mjs"
+
+evidence_plan:
+  - type: contract_test
+    surface: information
+    status: verified
+    artifact_location: "data/admissions/official-xizang-three-gorges-plan-correction-2026-v3270-import.json"
+    summary: "官方两表和唯一目标记录更正契约。"
+    tier: critical
+  - type: regression_test
+    surface: user
+    status: verified
+    artifact_location: "scripts/test-recommendation-boundaries-v3270.mjs"
+    summary: "计划级红线和不误伤普通计划。"
+    tier: critical
+  - type: runtime_readback
+    surface: operational
+    status: verified
+    artifact_location: "data/admissions/official-xizang-three-gorges-plan-correction-2026-v3270-runtime-manifest.json"
+    summary: "分片、镜像和HTTP哈希回读。"
+    tier: critical
+
+residual_risks:
+  - "西藏仍缺普通批全量投档/录取表、一分一段、专业最低位次和高职专科投档数据。"
+
+next_action: "继续追西藏自治区教育考试院普通批全量投档/录取表、一分一段、专业最低位次和高职专科数据。"
+
+review_notes:
+  - severity: non_blocking_resolved
+    finding: "合并守卫未显式覆盖学制和备注。"
+    resolution: "新增programDuration/planRemark前置守卫、传播字段和分片测试。"
+  - severity: non_blocking_resolved
+    finding: "运行清单、mac_2T和HTTP证据尚未生成。"
+    resolution: "完整主库与运行分片三层哈希回读通过并写入v3270 runtime manifest。"
+  - severity: non_blocking_resolved
+    finding: "README运维段仍指向v3.268。"
+    resolution: "更新为841776和v3270测试，并覆盖根/站点前端副本。"

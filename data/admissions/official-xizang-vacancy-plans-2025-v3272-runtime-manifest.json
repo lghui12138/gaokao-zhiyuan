@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-07-14T22:35:51Z",
+  "status": "verified",
+  "modelVersion": "local-deterministic-v3.272-xizang-vacancy2025-843963records",
+  "scope": "nationwide-31-province-runtime-with-official-xizang-2025-vacancy-plans-and-2026-schedule",
+  "counts": {
+    "structuredRecords": 843963,
+    "rankConversionRecords": 116656,
+    "sourceNotes": 5084,
+    "provinceShards": 31,
+    "unknownRecords": 0,
+    "unknownRankConversions": 0,
+    "xizangRecords": 28298,
+    "vacancyRecords": 2187,
+    "ordinaryVacancyRecords": 2157,
+    "specialPathVacancyRecords": 30,
+    "vocationalVacancyRecords": 944,
+    "ordinaryVocationalVacancyRecords": 926,
+    "vacancyPlanSnapshots": 6099,
+    "repeatedVacancyRecords": 1560,
+    "repeatedVacancyGroups": 742,
+    "eligibilityRecords": 510,
+    "digitalMediaTechnologyRecords": 23
+  },
+  "officialSources": {
+    "vacancyPlans": {
+      "title": "西藏自治区2025年普通高校招生征集志愿计划（第5、6、7、9、10、11、12、14、15、16、17号及对口高职）",
+      "publisher": "西藏自治区教育考试院（阳光高考转载）",
+      "url": "https://gaokao.chsi.com.cn/gkxx/zc/ss?regionId=086540000",
+      "announcementPages": 12,
+      "attachments": 23,
+      "docxAttachments": 22,
+      "xlsAttachments": 1,
+      "pinnedRawFiles": 35
+    },
+    "admissionSchedule": {
+      "title": "西藏：2026年普通高校招生录取工作进度计划",
+      "publisher": "西藏自治区教育考试院（阳光高考转载）",
+      "url": "https://gaokao.chsi.com.cn/gkxx/zc/ss/202607/20260713/2293870888.html",
+      "publishedAt": "2026-07-13",
+      "scheduleRows": 6,
+      "pinnedRawFiles": 2
+    },
+    "pinnedRawFilesTotal": 37
+  },
+  "vacancyContract": {
+    "dataType": "admission-plan",
+    "planStage": "征集志愿",
+    "ordinaryScope": "vacancy-plan-only",
+    "specialScope": "special-path-only",
+    "minScoreFieldCount": 0,
+    "minRankFieldCount": 0,
+    "annualPlanAggregation": "disabled-for-vacancy-snapshots",
+    "eligibilityPolicy": "A/B资格线仅判断公告填报门槛；不是投档分、录取分或概率。类别不明且只达到部分门槛时降级为资格待核验。",
+    "repeatPolicy": "同院校代码、专业代码、科类和批次跨轮保存出现次数；多轮剩余计划不得相加。"
+  },
+  "recommendationBoundary": {
+    "score180Threshold202Options": 0,
+    "score250ClassDependentRole": "资格待核验",
+    "score650OrdinaryProfileVocationalOptions": 0,
+    "score650OrdinaryProfileVocationalCandidates": 0,
+    "lowProfileDigitalMediaExamples": [
+      "拉萨师范学院-数字媒体技术",
+      "拉萨师范高等专科学校-数字媒体技术",
+      "东营职业学院-数字媒体技术"
+    ],
+    "probabilityPolicy": "征集快照只作历史低需求/补录机会信号，不计算录取概率。"
+  },
+  "atomicRefreshContract": {
+    "sameDirectoryTemporaryFile": true,
+    "validationBeforeRename": true,
+    "fsyncBeforeRename": true,
+    "atomicRename": true,
+    "pairwiseCanonicalPathConflictsRejected": 3,
+    "symlinkAliasRejected": true,
+    "countFailurePreservesExistingOutput": true,
+    "missingAuditPreservesExistingOutput": true,
+    "leftoverTemporaryArtifacts": 0
+  },
+  "artifacts": {
+    "master": {
+      "path": "site/data/knowledge.json",
+      "bytes": 1826493371,
+      "sha256": "01791bf608c13bfb026f7017a44f2a0dc85b8fd5dd11e158aac49f534d91165b"
+    },
+    "browserCore": {
+      "path": "site/data/knowledge-core.json",
+      "bytes": 15014048,
+      "sha256": "926d256b07437cc8bed4eba61a69ef81b001fa5b8d8371a60f1bf125464c4206"
+    },
+    "provinceManifest": {
+      "path": "site/data/provinces/manifest.json",
+      "bytes": 7123,
+      "sha256": "7cf4ebe26db6c43b908769c9800682e4e4daf7bd18f55953b32a837501aba24b"
+    },
+    "xizangShard": {
+      "path": "site/data/provinces/xizang.json",
+      "bytes": 27724689,
+      "sha256": "d0dc94735936280151b65ac122e9780106e9cbbdabd141091688287f7753b6f7"
+    },
+    "siteIndex": {
+      "path": "site/index.html",
+      "bytes": 2840,
+      "sha256": "a6aba84192666317df6f0c4278458cc50aa5ed2b451bcdd24e7fdc35b50457f0"
+    },
+    "siteApp": {
+      "path": "site/assets/app.js",
+      "bytes": 112786,
+      "sha256": "890941a76c46a32b0a1777429f9a2f3a1e2888d5db40291e0f214d3277537189"
+    },
+    "importPackage": {
+      "path": "data/admissions/official-xizang-vacancy-plans-2025-v3272-import.json",
+      "bytes": 4030158,
+      "sha256": "0877dabdfc651dda7b1b297f09183f8ce96842bf52569e1d9d9ad7d083292d86"
+    },
+    "atomicRefreshScript": {
+      "path": "scripts/refresh-xizang-vacancy-records-v3272.mjs",
+      "bytes": 8649,
+      "sha256": "5b038a1fa4e997da0f5b525202bb814b021bbb24dd6b8380fbd1ffb68640dc16"
+    },
+    "atomicRefreshTest": {
+      "path": "scripts/test-refresh-xizang-vacancy-records-v3272.mjs",
+      "bytes": 5072,
+      "sha256": "db5fa7af4798714a417a3f19711ffcdca77c6cf17c89a9eedfc646fc5affb439"
+    }
+  },
+  "mirrorReadback": {
+    "root": "/Volumes/mac_2T/gaokao_zhiyuan_site_runtime",
+    "masterSha256": "01791bf608c13bfb026f7017a44f2a0dc85b8fd5dd11e158aac49f534d91165b",
+    "topDataSha256": "01791bf608c13bfb026f7017a44f2a0dc85b8fd5dd11e158aac49f534d91165b",
+    "coreSha256": "926d256b07437cc8bed4eba61a69ef81b001fa5b8d8371a60f1bf125464c4206",
+    "provinceManifestSha256": "7cf4ebe26db6c43b908769c9800682e4e4daf7bd18f55953b32a837501aba24b",
+    "xizangShardSha256": "d0dc94735936280151b65ac122e9780106e9cbbdabd141091688287f7753b6f7",
+    "siteAppSha256": "890941a76c46a32b0a1777429f9a2f3a1e2888d5db40291e0f214d3277537189",
+    "importPackageSha256": "0877dabdfc651dda7b1b297f09183f8ce96842bf52569e1d9d9ad7d083292d86",
+    "appleDoubleCount": 0,
+    "temporaryFileCount": 0
+  },
+  "httpReadback": {
+    "baseUrl": "http://127.0.0.1:4177/",
+    "status": 200,
+    "dataSourceHeader": "mac_2T-mirror",
+    "masterBytes": 1826493371,
+    "masterSha256": "01791bf608c13bfb026f7017a44f2a0dc85b8fd5dd11e158aac49f534d91165b",
+    "coreSha256": "926d256b07437cc8bed4eba61a69ef81b001fa5b8d8371a60f1bf125464c4206",
+    "provinceManifestSha256": "7cf4ebe26db6c43b908769c9800682e4e4daf7bd18f55953b32a837501aba24b",
+    "xizangShardSha256": "d0dc94735936280151b65ac122e9780106e9cbbdabd141091688287f7753b6f7",
+    "siteAppSha256": "890941a76c46a32b0a1777429f9a2f3a1e2888d5db40291e0f214d3277537189"
+  },
+  "browserReadback": {
+    "url": "http://127.0.0.1:4177/",
+    "scriptUrl": "http://127.0.0.1:4177/assets/app.js?v=3.272.1",
+    "profile": {
+      "province": "西藏",
+      "score": 250,
+      "childType": "专业兴趣强",
+      "subject": "物理/理科",
+      "interest": "辽宁理工职业大学 软件工程技术"
+    },
+    "targetSchool": "辽宁理工职业大学(民办)",
+    "targetMajor": "软件工程技术",
+    "targetRole": "资格待核验",
+    "targetStatus": "征集资格待核验：不是可报结论或录取概率",
+    "desktopViewport": [1280, 720],
+    "mobileViewport": [390, 844],
+    "desktopHorizontalOverflow": 0,
+    "mobileHorizontalOverflow": 0,
+    "desktopCardOverlaps": 0,
+    "mobileCardOverlaps": 0,
+    "punctuationIssues": 0,
+    "consoleErrors": 0
+  },
+  "verification": {
+    "officialImportReplay": "passed",
+    "rawAndDerivedHashesPinned": "passed-37-raw-files-and-regenerated-xls-derivative",
+    "atomicRefresh": "passed-success-failure-malformed-audit-path-alias-and-zero-temp-residue",
+    "browserShardContract": "passed-31-provinces-843963-records-116656-ranks-unknown-zero",
+    "recommendationBoundaryContract": "passed-180-250-650-adversarial-profiles",
+    "v3271Regression": "passed",
+    "independentReview": "passed-after-all-p1-p2-were-resolved",
+    "browserQa": "passed-desktop-and-mobile-no-overflow-no-overlap-no-double-punctuation-no-console-errors"
+  },
+  "residualRisk": "全国31省统一入口不等于每省正式数据均已闭合。西藏仍缺普通类公开可计算一分一段、省级全量投档/录取表、专业最低位次和高职专科正式投档；征集快照不能替代录取分或下一年招生计划。"
+}

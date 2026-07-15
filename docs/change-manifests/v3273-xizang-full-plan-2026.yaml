@@ -1,0 +1,62 @@
+change_id: "2026-07-15-v3273-xizang-plan-path-safety"
+title: "西藏 2026 计划路径安全分流"
+phase: deliver
+status: complete
+execution_mode: full
+resume_mode: full
+resume_reason: "官方全量计划已在运行层；需防止限定资格计划进入普通候选，并同步推荐器与 mac_2T 前端资产。"
+last_updated: "2026-07-15T08:22:00Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "既有 DOCX 专业级计划、来源审计与运行时资格路径判定。"
+  - surface: user
+    role: consumer
+    notes: "西藏 2026 普通画像得到已过滤的官方可选院校专业，但不可显示录取概率。"
+  - surface: operational
+    role: consumer
+    notes: "同步推荐器前端资产与 mac_2T 运行镜像。"
+
+sot_map:
+  - info_name: "西藏自治区 2026 年普通高等学校招生计划"
+    pattern: 4
+    source: "https://gaokao.chsi.com.cn/gkxx/zc/ss/202606/20260626/2293847302.html"
+    consumers:
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/xizang.json"
+        kind: runtime
+        sync_lag: generated
+      - name: "site/assets/app.js"
+        kind: user
+        sync_lag: runtime
+    sync_mechanism: "Node 前端运行时按批次、标签、计划备注和已标记范围判定限定资格；镜像脚本同步静态资产。"
+    desync_risk: medium
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "恢复 v3.272 推荐器资产；既有主库和分片不变。"
+    - surface: user
+      mode: 1
+      rationale: "恢复 v3.272 推荐器资产。"
+    - surface: operational
+      mode: 1
+      rationale: "重新镜像 v3.272 前端资产。"
+
+task_slices:
+  - id: "recommendation-boundaries"
+    scope: "普通计划、限定资格路径、计划层非概率与专业匹配"
+    verification_command: "node scripts/test-recommendation-boundaries-v3273.mjs"
+  - id: "runtime-readback"
+    scope: "前端资产、镜像、HTTP和浏览器回读"
+    verification_command: "GAOKAO_MIRROR_PROVENANCE=1 GAOKAO_MIRROR_SITE_ASSETS=1 GAOKAO_MIRROR_TOP_DATA=1 node scripts/mirror-runtime-to-mac2t.mjs"
+
+residual_risks:
+  - "限定资格计划未输入考生资格字段，不在普通自动推荐范围内；需提供专项、军警、艺体、预科或定向资格后单独核验。"
+  - "招生计划不含投档/录取最低分、最低位次或录取概率。"
+  - "西藏仍缺普通类公开可计算一分一段、省级全量投档/录取表、专业最低位次和高职专科正式投档。"

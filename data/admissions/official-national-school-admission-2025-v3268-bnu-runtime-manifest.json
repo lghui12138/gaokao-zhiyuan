@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-07-11T02:41:12Z",
+  "modelVersion": "local-deterministic-v3.268-national-school-official-bnu2025-841770records",
+  "master": {
+    "file": "site/data/knowledge.json",
+    "bytes": 1822111171,
+    "sha256": "d6c2515323a230ae5aeec4ea0c6dc56b3d7d0a2faf6eb839aed7c10e7a9dc858",
+    "records": 841770,
+    "rankConversions": 116309,
+    "provinces": 31
+  },
+  "browserRuntime": {
+    "mode": "province-sharded",
+    "coreFile": "site/data/knowledge-core.json",
+    "coreBytes": 14978937,
+    "coreSha256": "9bc8da2edd9642e1b10a0854f821e904a4cba548f983020d910cfedc798dac38",
+    "provinceManifest": "site/data/provinces/manifest.json",
+    "provinceManifestSha256": "f10feeadcef2951758a6bb58bbba2c2b7a9a95b7fe54beb1032ad95d9c35ab39",
+    "provinceCount": 31,
+    "shardRecords": 841770,
+    "shardRankConversions": 116309,
+    "unknownRecords": 0,
+    "unknownRankConversions": 0
+  },
+  "beijingNormalUniversityImport": {
+    "file": "data/admissions/official-national-school-admission-2025-v3268-bnu-import.json",
+    "sha256": "f810530589c0b138b1404431778f00477dfb92e5fb7a190b617420dcf1751c97",
+    "records": 178,
+    "transferRecords": 155,
+    "majorRecords": 23,
+    "recordsWithOfficialRank": 149,
+    "schoolOfficialOnly": 92,
+    "specialPathOnly": 86,
+    "skippedCandidates": 1101
+  },
+  "runtimePolicies": {
+    "specialPathExcludedFromOrdinaryRecommendation": true,
+    "schoolOfficialConfidenceCeiling": "A-",
+    "candidatePoolHardScope": true,
+    "mac2tMirrorReadback": true
+  },
+  "tests": [
+    "node scripts/test-browser-runtime-shards-v3268.mjs",
+    "node scripts/test-recommendation-boundaries-v3268.mjs",
+    "node --check site/assets/app.js"
+  ]
+}
