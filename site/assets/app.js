@@ -1617,6 +1617,135 @@ function scoreCandidate(candidate, profile, band) {
   };
 }
 
+const APPLICATION_PLAN_TIERS = [
+  { id: "priority", label: "优先核验", note: "录取边界相对有利，仍须逐项核验当年计划、专业组与调剂范围。" },
+  { id: "steady", label: "稳妥候选", note: "与近年边界接近或有一定余量，适合与优先核验项搭配。" },
+  { id: "reach", label: "冲刺候选", note: "当前边界偏紧，只作为孩子愿意承担风险的上探项。" },
+  { id: "plan", label: "计划与资格核验", note: "这是招生计划或历史征集线索，不是录取概率。" },
+];
+
+function applicationPlanTier(option) {
+  if (!option?.record) return null;
+  if (isPlanRecord(option.record)) return "plan";
+  const fitScore = Number(option.admissionFit?.score) || 0;
+  if (fitScore >= 82) return "priority";
+  if (fitScore >= 68) return "steady";
+  return "reach";
+}
+
+function applicationPlanKey(option) {
+  const record = option.record || {};
+  return record.id || [
+    record.schoolName || option.name,
+    record.majorName || record.majorGroup || "未区分专业",
+    record.province,
+    record.subjectType,
+    record.dataType,
+  ].join("|");
+}
+
+function applicationPlanOptionScore(option, result, tierIndex) {
+  const recencyScore = option.admissionFit?.recency?.fresh ? 8 : 0;
+  return (APPLICATION_PLAN_TIERS.length - tierIndex) * 1000 +
+    (Number(option.optionScore) || 0) * 2 +
+    (Number(result.total) || 0) +
+    recencyScore;
+}
+
+function buildApplicationPlan(results) {
+  const selected = new Map();
+  for (const result of results || []) {
+    for (const option of result.schoolOptions || []) {
+      const tier = applicationPlanTier(option);
+      if (!tier) continue;
+      const tierIndex = APPLICATION_PLAN_TIERS.findIndex((item) => item.id === tier);
+      const key = applicationPlanKey(option);
+      const previous = selected.get(key);
+      const entry = {
+        ...option,
+        tier,
+        tierIndex,
+        matchingPools: [result.title],
+        candidateScore: applicationPlanOptionScore(option, result, tierIndex),
+      };
+      if (!previous) {
+        selected.set(key, entry);
+        continue;
+      }
+      previous.matchingPools = [...new Set([...previous.matchingPools, result.title])];
+      if (entry.candidateScore > previous.candidateScore) {
+        entry.matchingPools = previous.matchingPools;
+        selected.set(key, entry);
+      }
+    }
+  }
+
+  return APPLICATION_PLAN_TIERS.map((tier) => ({
+    ...tier,
+    options: [...selected.values()]
+      .filter((option) => option.tier === tier.id)
+      .sort((left, right) => right.candidateScore - left.candidateScore)
+      .slice(0, tier.id === "plan" ? 3 : 5),
+  })).filter((tier) => tier.options.length);
+}
+
+function applicationPlanDetail(option) {
+  const record = option.record || {};
+  const fit = option.admissionFit;
+  const major = record.majorName || record.majorGroup || "专业方向待核验";
+  const sourceLimit = isPlanRecord(record)
+    ? isVacancyPlanRecord(record)
+      ? "历史征集剩余计划，只作补录信号。"
+      : "官方招生计划，只说明可报专业池。"
+    : admissionRecordLimitWarning(record);
+  const fitText = fit?.text || option.focus || "需复核招生章程与当年计划。";
+  return {
+    major,
+    text: `${fitText}${sourceLimit || ""}`,
+    tags: [
+      record.city,
+      record.year ? `${record.year}年` : "",
+      record.minScore ? `最低分${record.minScore}` : "",
+      record.rankRangeText ? `位次${record.rankRangeText}` : "",
+      fit?.recency?.label || "",
+      ...(option.matchingPools.length > 1 ? [`命中${option.matchingPools.length}个方向`] : []),
+    ].filter(Boolean),
+  };
+}
+
+function renderApplicationPlan(results) {
+  const tiers = buildApplicationPlan(results);
+  if (!tiers.length) return "";
+  return `<section class="band application-plan">
+    <div class="application-plan-head">
+      <div>
+        <h3>可执行院校专业清单</h3>
+        <p>只汇总已命中的本省同科类结构化记录；同一院校专业会合并，计划类数据单独展示。</p>
+      </div>
+      <span>${fmtNumber(tiers.reduce((total, tier) => total + tier.options.length, 0))} 项</span>
+    </div>
+    <div class="application-plan-grid">
+      ${tiers.map((tier) => `<section class="application-plan-group">
+        <header><h4>${esc(tier.label)}</h4><span>${fmtNumber(tier.options.length)} 项</span></header>
+        <p>${esc(tier.note)}</p>
+        <div class="application-plan-list">
+          ${tier.options.map((option) => {
+            const detail = applicationPlanDetail(option);
+            return `<div class="application-plan-row">
+              <div>
+                <strong>${esc(option.name)} · ${esc(detail.major)}</strong>
+                <p>${esc(detail.text)}</p>
+                ${renderTags(detail.tags)}
+              </div>
+              <span>${esc(option.role || tier.label)}</span>
+            </div>`;
+          }).join("")}
+        </div>
+      </section>`).join("")}
+    </div>
+  </section>`;
+}
+
 async function loadProvinceData(provinceValue) {
   const province = normalizeProvince(provinceValue);
   if (!province) throw new Error("请先选择考生所在省份");
@@ -1996,6 +2125,7 @@ function renderRecommendationResults() {
     </div>
     ${renderDataFreshnessPanel(rec.profile)}
     ${renderAdmissionHitPanel(rec.profile)}
+    ${renderApplicationPlan(rec.results)}
     <div class="grid-2">${resultCards}</div>
     <section class="band">
       <h3>官方复核清单</h3>

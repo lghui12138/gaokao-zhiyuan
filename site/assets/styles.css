@@ -709,6 +709,82 @@ select {
   line-height: 1.5;
 }
 
+.application-plan {
+  background: #f4f8fb;
+  border-color: #c9dbe4;
+}
+
+.application-plan-head,
+.application-plan-group header,
+.application-plan-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.application-plan-head h3,
+.application-plan-group h4 {
+  margin: 0;
+}
+
+.application-plan-head p,
+.application-plan-group > p,
+.application-plan-row p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.application-plan-head > span,
+.application-plan-group header > span,
+.application-plan-row > span {
+  flex: 0 0 auto;
+  border: 1px solid #c9dbe4;
+  border-radius: 8px;
+  padding: 5px 8px;
+  color: var(--blue);
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.application-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.application-plan-group {
+  min-width: 0;
+}
+
+.application-plan-list {
+  display: grid;
+  margin-top: 10px;
+}
+
+.application-plan-row {
+  padding: 12px 0;
+  border-top: 1px solid #d8e3e9;
+}
+
+.application-plan-row strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.application-plan-row > span {
+  color: var(--leaf-dark);
+  border-color: #c9ddcf;
+  background: #edf7f1;
+  text-align: center;
+}
+
 .recommend-card {
   background: #fff;
   border: 1px solid var(--line);
@@ -905,7 +981,10 @@ select {
 
   .form-actions,
   .model-summary,
-  .recommend-card header {
+  .recommend-card header,
+  .application-plan-head,
+  .application-plan-group header,
+  .application-plan-row {
     display: grid;
     justify-content: stretch;
   }
