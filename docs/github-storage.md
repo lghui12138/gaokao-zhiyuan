@@ -1,11 +1,13 @@
 # GitHub Storage Layout
 
 The repository contains the site code, importer scripts, tests, documentation,
-small import summaries, and data manifests. It deliberately excludes generated
-browser shards, local rollback copies, the 1GB-plus master knowledge JSON, and
-raw official evidence packages.
+small import summaries, and data manifests. It deliberately excludes local
+rollback copies, the 1GB-plus master knowledge JSON, and raw official evidence
+packages. The current release's compressed browser core and province shards are
+the exception: they are deployed inside `site/data/release-v3.275/` so GitHub
+Pages reads them from the same origin without a cross-origin dependency.
 
-Each verified runtime version has a private GitHub Release named
+Each verified runtime version has a GitHub Release named
 `data-v<version>`. The release stores:
 
 - `knowledge-v<version>.json.gz`: canonical master knowledge data used to

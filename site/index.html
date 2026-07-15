@@ -69,8 +69,8 @@
     </template>
 
     <script>
-      if (location.hostname.endsWith("github.io")) {
-        window.__GAOKAO_RUNTIME_RELEASE_BASE__ = "https://github.com/lghui12138/gaokao-zhiyuan/releases/download/data-v3.275";
+      if (location.hostname.endsWith("github.io") || location.hostname === "lghui.top") {
+        window.__GAOKAO_RUNTIME_RELEASE_BASE__ = "./data/release-v3.275";
       }
     </script>
     <script type="module" src="./assets/app.js?v=3.275.0"></script>
