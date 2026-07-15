@@ -11,6 +11,7 @@ backups/
 data/knowledge*.json
 site/data/
 !site/data/
+site/data/*
 !site/data/release-v3.275/
 !site/data/release-v3.275/*.gz
 
