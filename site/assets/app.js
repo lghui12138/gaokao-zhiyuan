@@ -13,7 +13,7 @@ const state = {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
-const RUNTIME_RELEASE_BASE = String(globalThis.__GAOKAO_RUNTIME_RELEASE_BASE__ || "").replace(/\/+$/, "");
+const RUNTIME_RELEASE_BASE = String(globalThis.__GAOKAO_RUNTIME_RELEASE_BASE__ || "./data/release-v3.275").replace(/\/+$/, "");
 
 function runtimeAssetUrl(relativePath) {
   if (!RUNTIME_RELEASE_BASE) return `./data/${relativePath}`;

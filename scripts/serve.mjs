@@ -7,7 +7,9 @@ import { fileURLToPath } from "node:url";
 
 const PROJECT_ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const SITE_ROOT = path.join(PROJECT_ROOT, "site");
-const MIRROR_SITE_ROOT = path.resolve(process.env.GAOKAO_MIRROR_SITE_ROOT || "/Volumes/mac_2T/gaokao_zhiyuan_site_runtime/site");
+const MIRROR_SITE_ROOT = process.env.GAOKAO_MIRROR_SITE_ROOT
+  ? path.resolve(process.env.GAOKAO_MIRROR_SITE_ROOT)
+  : "";
 const HOST = process.env.GAOKAO_HOST || "127.0.0.1";
 const PORT = Number(process.env.GAOKAO_PORT || 4177);
 
@@ -32,13 +34,16 @@ function safeSitePath(urlPath) {
 
 function runtimeDataFile(urlPath = "/data/knowledge.json") {
   const relative = decodeURIComponent(urlPath.split("?")[0]).replace(/^\/+/, "");
-  const mirror = path.resolve(MIRROR_SITE_ROOT, relative);
   const internal = path.resolve(SITE_ROOT, relative);
-  const mirrorAllowed = mirror === MIRROR_SITE_ROOT || mirror.startsWith(`${MIRROR_SITE_ROOT}${path.sep}`);
   const internalAllowed = internal === SITE_ROOT || internal.startsWith(`${SITE_ROOT}${path.sep}`);
-  if (!mirrorAllowed || !internalAllowed) return null;
-  if (fs.existsSync(mirror) && fs.statSync(mirror).isFile()) {
-    return { file: mirror, source: "mac_2T-mirror" };
+  if (!internalAllowed) return null;
+  if (MIRROR_SITE_ROOT) {
+    const mirror = path.resolve(MIRROR_SITE_ROOT, relative);
+    const mirrorAllowed = mirror === MIRROR_SITE_ROOT || mirror.startsWith(`${MIRROR_SITE_ROOT}${path.sep}`);
+    if (!mirrorAllowed) return null;
+    if (fs.existsSync(mirror) && fs.statSync(mirror).isFile()) {
+      return { file: mirror, source: "mac_2T-mirror" };
+    }
   }
   return { file: internal, source: "internal-apfs" };
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>高考志愿本地知识库</title>
+    <title>全国高考志愿智能推荐</title>
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
@@ -12,7 +12,7 @@
         <div class="brand">
           <div class="brand-mark">志</div>
           <div>
-            <h1>高考志愿本地知识库</h1>
+            <h1>全国高考志愿智能推荐</h1>
             <p id="generatedAt">正在载入资料</p>
           </div>
         </div>
@@ -26,8 +26,8 @@
           <button class="nav-btn" data-view="sources">资料库</button>
         </nav>
         <div class="sidebar-note">
-          <strong>本地版</strong>
-          <span>资料来自指定的两个 mac_2T 目录；正文抽取、索引和分类结果保存在本项目。</span>
+          <strong>全国数据版</strong>
+          <span>按考生省份按需读取官方录取、计划和位次运行数据。</span>
         </div>
       </aside>
 
@@ -69,9 +69,7 @@
     </template>
 
     <script>
-      if (location.hostname.endsWith("github.io") || location.hostname === "lghui.top") {
-        window.__GAOKAO_RUNTIME_RELEASE_BASE__ = "./data/release-v3.275";
-      }
+      window.__GAOKAO_RUNTIME_RELEASE_BASE__ = "./data/release-v3.275";
     </script>
     <script type="module" src="./assets/app.js?v=3.275.0"></script>
   </body>

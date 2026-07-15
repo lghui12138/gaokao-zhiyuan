@@ -6,6 +6,8 @@ rollback copies, the 1GB-plus master knowledge JSON, and raw official evidence
 packages. The current release's compressed browser core and province shards are
 the exception: they are deployed inside `site/data/release-v3.275/` so GitHub
 Pages reads them from the same origin without a cross-origin dependency.
+The local static preview uses that same compressed runtime, so it does not need
+an additional uncompressed 1GB-plus browser-data copy.
 
 Each verified runtime version has a GitHub Release named
 `data-v<version>`. The release stores:
@@ -23,3 +25,7 @@ integrity, then atomically restore the hard-linked local master and rebuild
 browser shards. `--verify path/to/asset.gz` performs the same check without
 changing the local runtime. The release is the immutable data layer; it does
 not turn a school-official source into a province-level formal admission table.
+
+`scripts/serve.mjs` defaults to the internal APFS site root. Set
+`GAOKAO_MIRROR_SITE_ROOT` only for an explicitly approved mirror read; this
+keeps ordinary local previews off the external drive.
