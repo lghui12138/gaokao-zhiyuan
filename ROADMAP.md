@@ -2,6 +2,7 @@
 
 | 变更 | 阶段 | 进入条件 | 退出条件 | 验证 | 状态 | 记录 |
 |---|---|---|---|---|---|---|
+| v3.278 再选科目资格筛选 | Phase 7 Deliver | 新高考专业记录已有再选科目字段，但模型未用该字段过滤 | 明确不符合选科的院校专业和计划记录被排除；含糊表述保留待核验 | `node scripts/test-elective-requirement-v3278.mjs && node scripts/test-browser-runtime-shards-v3274.mjs` | 通过 | 选科判断只在公告表述可明确解析时自动执行，最终以当年招生目录为准 |
 | v3.277 可执行院校专业清单 | Phase 7 Deliver | 方向排序已能给候选池，但真实院校专业与计划线索混在各方向卡片中 | 已命中的院校专业跨方向去重并按优先/稳妥/冲刺分层；计划和征集快照隔离 | `node scripts/test-application-plan-v3277.mjs && node scripts/test-browser-runtime-shards-v3274.mjs` | 通过 | 清单是核验优先级，不是投档承诺；无结构化记录的泛候选不进入清单 |
 | v3.276 录取边界年份校准与压缩发布回归 | Phase 7 Deliver | 浏览器运行已改为 GitHub Release gzip 分片，推荐器仍可能把多年录取边界等价看待 | 录取边界按年份降权，历史命中不能获得 A 级可信度；回归可直接校验当前 gzip 核心和 31 省分片 | `node scripts/test-admission-recency-v3276.mjs && node scripts/test-browser-runtime-shards-v3274.mjs` | 通过 | 数据年份不会被误写成当年预测；当年计划、专业组和位次核验仍不可省略 |
 | v3.275 湖南大学2024录取与2025计划全国官方数据 | Phase 7 Deliver | 湖南大学招生网 `2025fs` 目录中28份分省PDF可复核，2024专业最低分/最低位次与2025计划字段可区分 | 901条专业级记录合入主库，28省覆盖、31省浏览器分片、专项隔离和江西样本均可回归 | `node scripts/test-official-hnu-import-v3275.mjs && node scripts/test-browser-runtime-shards-v3274.mjs && node scripts/test-recommendation-boundaries-v3273.mjs` | 通过 | 单校官方层不替代省考试院全量投档/录取表；重庆、西藏、陕西在该官方目录未见PDF，27条新疆记录仅有分数并保持不可计算 |

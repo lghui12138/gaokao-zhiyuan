@@ -464,6 +464,46 @@ select {
   grid-column: span 3;
 }
 
+.recommend-form fieldset {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid #cbd7cf;
+  border-radius: 8px;
+  padding: 10px 12px 12px;
+  background: #fff;
+}
+
+.recommend-form fieldset.wide {
+  grid-column: span 3;
+}
+
+.recommend-form legend {
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.elective-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.elective-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.elective-options input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--leaf);
+}
+
 .recommend-form input,
 .recommend-form select,
 .recommend-form textarea {
@@ -991,6 +1031,10 @@ select {
   }
 
   .recommend-form label.wide {
+    grid-column: auto;
+  }
+
+  .recommend-form fieldset.wide {
     grid-column: auto;
   }
 

@@ -36,6 +36,7 @@ const SUBJECT_TYPES = ["物理类", "历史类", "物理/理科", "历史/文科
 const RANK_LEVEL_LABELS = { undergraduate: "本科加分", vocational: "专科加分" };
 const STRATEGIES = ["稳健", "均衡", "冲刺"];
 const BUDGET_LEVELS = ["不敏感", "中等敏感", "高度敏感"];
+const ELECTIVE_SUBJECTS = ["化学", "生物", "思想政治", "地理"];
 const ALL_PROVINCES = [
   "北京", "天津", "河北", "山西", "内蒙古", "辽宁", "吉林", "黑龙江", "上海", "江苏",
   "浙江", "安徽", "福建", "江西", "山东", "河南", "湖北", "湖南", "广东", "广西",
@@ -49,6 +50,7 @@ const DEFAULT_PROFILE = {
   province: "江西",
   candidateCategory: "",
   subject: "物理/理科",
+  electives: "化学 生物",
   disciplineFocus: "08",
   interest: "计算机 软件 数据 数字媒体 虚拟现实",
   cities: "南昌 武汉 长沙 重庆 西安 杭州",
@@ -326,6 +328,52 @@ function parseList(value) {
     .filter(Boolean);
 }
 
+function normalizeElectiveSubject(value) {
+  const text = normalizeText(value);
+  if (/化学/.test(text)) return "化学";
+  if (/生物/.test(text)) return "生物";
+  if (/政治|思想政治/.test(text)) return "思想政治";
+  if (/地理/.test(text)) return "地理";
+  return "";
+}
+
+function selectedElectiveSubjects(profile) {
+  return [...new Set(parseList(profile?.electives)
+    .map(normalizeElectiveSubject)
+    .filter(Boolean))];
+}
+
+function electiveRequirementForProfile(record, profile) {
+  const requirement = String(record?.electiveRequirement || "").trim();
+  if (!requirement || /不限|不提.*科目|无选科要求/.test(requirement)) {
+    return { state: "not-required", text: "选科不限或未公开要求" };
+  }
+  const required = [...new Set(ELECTIVE_SUBJECTS.filter((subject) =>
+    subject === "思想政治" ? /思想政治|政治/.test(requirement) : requirement.includes(subject)
+  ))];
+  if (!required.length) {
+    return { state: "needs-check", text: `选科要求“${requirement}”无法自动判定，需核验招生目录` };
+  }
+  const selected = selectedElectiveSubjects(profile);
+  if (!selected.length) {
+    return { state: "needs-check", text: `未填写再选科目，无法核验“${requirement}”` };
+  }
+  const requiresAll = /均须|全部.*选考|同时选考|2门科目.*均/.test(requirement);
+  const allowsAny = /或|其中|任选|至少.*门|1门科目/.test(requirement);
+  let matched;
+  if (requiresAll) matched = required.every((subject) => selected.includes(subject));
+  else if (allowsAny) matched = required.some((subject) => selected.includes(subject));
+  else if (required.length === 1) matched = selected.includes(required[0]);
+  else return { state: "needs-check", text: `选科要求“${requirement}”存在多科表述，需核验招生目录` };
+  return matched
+    ? { state: "matched", text: `符合选科要求：${requirement}` }
+    : { state: "unmatched", text: `不符合选科要求：${requirement}` };
+}
+
+function electiveRequirementAllowsProfile(record, profile) {
+  return electiveRequirementForProfile(record, profile).state !== "unmatched";
+}
+
 function isSelected(value, current) {
   return value === current ? "selected" : "";
 }
@@ -580,6 +628,7 @@ function profileAdmissionRecords(profile) {
     !isSpecialPathRecord(record) &&
     recordMatchesProfileEducationPath(record, profile) &&
     !recordConflictsWithRedLines(record, profile) &&
+    electiveRequirementAllowsProfile(record, profile) &&
     provinceMatchesRecord(record, profile) &&
     subjectMatchesRecord(record, profile) &&
     recordMatchesCandidateCategory(record, profile)
@@ -593,6 +642,7 @@ function profilePlanRecords(profile) {
     !planRestrictedEligibilityReason(record) &&
     recordMatchesProfileEducationPath(record, profile) &&
     !recordConflictsWithRedLines(record, profile) &&
+    electiveRequirementAllowsProfile(record, profile) &&
     provinceMatchesRecord(record, profile) &&
     subjectMatchesRecord(record, profile) &&
     recordMatchesCandidateCategory(record, profile)
@@ -1003,6 +1053,7 @@ function profileFromForm() {
     rankUsage: rankUsageParts[0] === "ordinary" ? "" : rankUsageParts[0],
     rankCategory: rankUsageParts[1] || "",
     rankLevelUsage: rankUsageParts[2] || "",
+    electives: $$(".elective-input:checked").map((input) => input.value).join(" "),
     disciplineFocus: $("#disciplineFocus").value,
     interest: $("#interestInput").value.trim(),
     cities: $("#cityInput").value.trim(),
@@ -1040,6 +1091,7 @@ function recordSearchText(record) {
     record.batch,
     record.city,
     record.dataType,
+    record.electiveRequirement,
     (record.schoolTags || []).join(" "),
     (record.disciplineCodes || []).join(" "),
     (record.cautions || []).join(" "),
@@ -1348,6 +1400,8 @@ function buildAdmissionOptions(candidate, profile) {
         record.rankRangeText ? `位次${record.rankRangeText}` : "",
         trend?.label || "",
         record.majorGroup || "",
+        record.electiveRequirement ? `选科${record.electiveRequirement}` : "",
+        electiveRequirementForProfile(record, profile).state === "needs-check" ? "选科待核" : "",
       ].filter(Boolean);
       return {
         name: record.schoolName,
@@ -1435,6 +1489,7 @@ function scoreCandidate(candidate, profile, band) {
   const limitedAdmission = bestAdmission && isLimitedAdmissionRecord(bestAdmission.record);
   const schoolOfficialAdmission = bestAdmission && isSchoolOfficialOnlyRecord(bestAdmission.record);
   const staleAdmission = bestAdmission && !bestAdmission.fit.recency?.fresh;
+  const electivePendingRecords = candidateAdmissionRecords.filter((record) => electiveRequirementForProfile(record, profile).state === "needs-check");
   const redLines = parseList(profile.redLines);
   const cityPrefs = parseList(profile.cities);
   const interestWords = parseList(profile.interest);
@@ -1589,6 +1644,7 @@ function scoreCandidate(candidate, profile, band) {
     ...(staleAdmission ? [bestAdmission.fit.recency.text] : []),
     ...(limitedAdmission ? [admissionRecordLimitWarning(bestAdmission.record)] : []),
     ...(schoolOfficialAdmission ? [admissionRecordLimitWarning(bestAdmission.record)] : []),
+    ...(electivePendingRecords.length ? [`当前方向有${fmtNumber(electivePendingRecords.length)}条记录的再选科目要求待核验；填写“再选科目”后可缩小候选。`] : []),
     ...(provinceReadiness && provinceReadiness.status !== "strong" ? [`${provinceReadiness.province}数据成熟度为${provinceReadiness.statusLabel}（${provinceReadiness.readinessScore}分）：${provinceReadiness.recommendationUse}`] : []),
     ...candidate.risks,
     ...missingInputs.map((item) => `缺少${item}，模型可信度自动降级。`),
@@ -1713,6 +1769,8 @@ function applicationPlanDetail(option) {
       record.minScore ? `最低分${record.minScore}` : "",
       record.rankRangeText ? `位次${record.rankRangeText}` : "",
       fit?.recency?.label || "",
+      record.electiveRequirement ? `选科${record.electiveRequirement}` : "",
+      electiveRequirementForProfile(record, state.recommendation?.profile || {}).state === "needs-check" ? "选科待核" : "",
       ...(option.matchingPools.length > 1 ? [`命中${option.matchingPools.length}个方向`] : []),
     ].filter(Boolean),
     sourceUrl: record.sourceUrl || "",
@@ -1978,6 +2036,12 @@ function renderRecommendForm(profile) {
         ${SUBJECT_TYPES.map((item) => `<option value="${esc(item)}" ${isSelected(item, getProfileValue(profile, "subject"))}>${esc(item)}</option>`).join("")}
       </select>
     </label>
+    <fieldset class="wide elective-fieldset">
+      <legend>再选科目</legend>
+      <div class="elective-options">
+        ${ELECTIVE_SUBJECTS.map((subject) => `<label><input class="elective-input" type="checkbox" value="${esc(subject)}" ${selectedElectiveSubjects(profile).includes(subject) ? "checked" : ""} />${esc(subject)}</label>`).join("")}
+      </div>
+    </fieldset>
     <label>
       <span>西藏考生类别</span>
       <select id="candidateCategoryInput">
