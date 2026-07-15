@@ -5,23 +5,42 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
+import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const coreFile = path.join(projectRoot, "site/data/knowledge-core.json");
-const shardDir = path.join(projectRoot, "site/data/provinces");
-const manifestFile = path.join(shardDir, "manifest.json");
+const siteDataDir = path.join(projectRoot, "site/data");
+const siteIndex = fs.readFileSync(path.join(projectRoot, "site/index.html"), "utf8");
+const releaseMatch = siteIndex.match(/__GAOKAO_RUNTIME_RELEASE_BASE__\s*=\s*["']\.\/data\/([^"']+)/);
+const releaseDir = releaseMatch ? path.join(siteDataDir, releaseMatch[1]) : "";
+const usingCompressedRelease = Boolean(releaseDir && fs.existsSync(path.join(releaseDir, "knowledge-core.json.gz")));
 const appFile = path.join(projectRoot, "site/assets/app.js");
 const importFile = path.join(projectRoot, "data/admissions/official-xizang-vacancy-plans-2025-v3272-import.json");
 const szuImportFile = path.join(projectRoot, "data/admissions/official-national-school-admission-2024-2025-v3274-szu-import.json");
 const hnuImportFile = path.join(projectRoot, "data/admissions/official-national-school-admission-2024-v3275-hnu-import.json");
 
-function sha256(file) {
-  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+function runtimeDataFile(relativePath) {
+  if (usingCompressedRelease) return path.join(releaseDir, `${path.basename(relativePath)}.gz`);
+  return path.join(siteDataDir, relativePath);
 }
 
-const core = JSON.parse(fs.readFileSync(coreFile, "utf8"));
-const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
+function runtimeBytes(file) {
+  const bytes = fs.readFileSync(file);
+  return file.endsWith(".gz") ? zlib.gunzipSync(bytes) : bytes;
+}
+
+function runtimeJson(file) {
+  return JSON.parse(runtimeBytes(file).toString("utf8"));
+}
+
+function sha256(file) {
+  return crypto.createHash("sha256").update(runtimeBytes(file)).digest("hex");
+}
+
+const coreFile = runtimeDataFile("knowledge-core.json");
+const manifestFile = runtimeDataFile("provinces/manifest.json");
+const core = runtimeJson(coreFile);
+const manifest = runtimeJson(manifestFile);
 const imported = JSON.parse(fs.readFileSync(importFile, "utf8"));
 const szuImported = JSON.parse(fs.readFileSync(szuImportFile, "utf8"));
 const hnuImported = JSON.parse(fs.readFileSync(hnuImportFile, "utf8"));
@@ -54,11 +73,11 @@ assert.equal(manifest.rankConversionCount, 116656);
 assert.equal(manifest.unknownRecords, 0);
 assert.equal(manifest.unknownRankConversions, 0);
 assert.equal(manifest.core.sha256, sha256(coreFile));
-assert.equal(manifest.core.bytes, fs.statSync(coreFile).size);
+assert.equal(manifest.core.bytes, runtimeBytes(coreFile).byteLength);
 
 for (const entry of Object.values(manifest.shards)) {
-  const file = path.join(shardDir, entry.file);
-  assert.equal(fs.statSync(file).size, entry.bytes, `${entry.file} byte count mismatch`);
+  const file = runtimeDataFile(`provinces/${entry.file}`);
+  assert.equal(runtimeBytes(file).byteLength, entry.bytes, `${entry.file} byte count mismatch`);
   assert.equal(sha256(file), entry.sha256, `${entry.file} SHA-256 mismatch`);
 }
 
@@ -67,7 +86,7 @@ assert.equal(manifest.shards["北京"].rankConversions, 688);
 const xizangEntry = manifest.shards["西藏"];
 assert.equal(xizangEntry.records, 28315);
 assert.equal(xizangEntry.rankConversions, 0);
-const xizang = JSON.parse(fs.readFileSync(path.join(shardDir, xizangEntry.file), "utf8"));
+const xizang = runtimeJson(runtimeDataFile(`provinces/${xizangEntry.file}`));
 const szuXizangRecords = xizang.records.filter((record) => record.sourceId === "official-szu-national-2024-2025-school-admission");
 assert.equal(szuXizangRecords.length, 17);
 assert.ok(szuXizangRecords.every((record) => ["A类考生", "B类考生"].includes(record.candidateCategory)));
@@ -88,7 +107,7 @@ assert.ok(vacancyRecords.every((record) => !Object.hasOwn(record, "minRank") && 
 assert.ok(vacancyRecords.every((record) => record.sourceAttachment));
 
 const jiangxiEntry = manifest.shards["江西"];
-const jiangxi = JSON.parse(fs.readFileSync(path.join(shardDir, jiangxiEntry.file), "utf8"));
+const jiangxi = runtimeJson(runtimeDataFile(`provinces/${jiangxiEntry.file}`));
 const hnuJiangxi = jiangxi.records.filter((record) => record.sourceId === "official-hnu-national-2024-major-admission");
 assert.equal(hnuJiangxi.length, 37);
 const hnuJiangxiCs = hnuJiangxi.find((record) => record.majorName === "计算机科学与技术" && record.admissionType === "普通类");

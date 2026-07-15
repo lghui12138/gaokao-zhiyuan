@@ -1248,28 +1248,69 @@ function majorInterestScore(record, profile) {
   return score;
 }
 
-function admissionFit(record, profile) {
+function admissionRecency(record, today = currentChinaDate()) {
+  const recordYear = Number(record?.year) || 0;
+  const referenceYear = Number(String(today || "").slice(0, 4)) || new Date().getFullYear();
+  if (!recordYear) {
+    return {
+      age: null,
+      fresh: false,
+      penalty: 8,
+      label: "年份待核",
+      text: "来源年份缺失，模型已降权，必须核验当年招生计划和投档表",
+    };
+  }
+  const age = Math.max(0, referenceYear - recordYear);
+  if (age <= 1) {
+    return {
+      age,
+      fresh: true,
+      penalty: 0,
+      label: age === 0 ? "当年" : "近1年",
+      text: `${recordYear}年录取边界，时效性较好，仍须核验当年计划与专业组`,
+    };
+  }
+  const penalty = age === 2 ? 6 : age === 3 ? 13 : Math.min(24, 13 + (age - 3) * 5);
+  return {
+    age,
+    fresh: false,
+    penalty,
+    label: age === 2 ? "近2年" : `${age}年前`,
+    text: `${recordYear}年历史录取边界，距当前${age}年，模型已降权，必须用当年计划和最新位次复核`,
+  };
+}
+
+function admissionFit(record, profile, today = currentChinaDate()) {
   const rank = Number(profile.rank) || 0;
   const score = Number(profile.score) || 0;
   const minRankEnd = Number(record.minRankEnd) || 0;
   const minScore = Number(record.minScore) || 0;
+  const recency = admissionRecency(record, today);
+  let fit;
   if (rank > 0 && minRankEnd > 0) {
     const gap = rank - minRankEnd;
-    if (gap <= -5000) return { zone: "稳", score: 94, text: `位次比近年最低位次靠前${fmtNumber(Math.abs(gap))}名` };
-    if (gap <= -1500) return { zone: "稳妥", score: 86, text: `位次比近年最低位次靠前${fmtNumber(Math.abs(gap))}名` };
-    if (gap <= 600) return { zone: "临界稳", score: 76, text: `位次接近近年最低位次，差距${fmtNumber(Math.abs(gap))}名以内` };
-    if (gap <= 3500) return { zone: "冲", score: 62, text: `位次落后近年最低位次约${fmtNumber(gap)}名` };
-    return { zone: "高冲", score: 42, text: `位次落后近年最低位次约${fmtNumber(gap)}名` };
-  }
-  if (score > 0 && minScore > 0) {
+    if (gap <= -5000) fit = { zone: "稳", score: 94, text: `位次比近年最低位次靠前${fmtNumber(Math.abs(gap))}名` };
+    else if (gap <= -1500) fit = { zone: "稳妥", score: 86, text: `位次比近年最低位次靠前${fmtNumber(Math.abs(gap))}名` };
+    else if (gap <= 600) fit = { zone: "临界稳", score: 76, text: `位次接近近年最低位次，差距${fmtNumber(Math.abs(gap))}名以内` };
+    else if (gap <= 3500) fit = { zone: "冲", score: 62, text: `位次落后近年最低位次约${fmtNumber(gap)}名` };
+    else fit = { zone: "高冲", score: 42, text: `位次落后近年最低位次约${fmtNumber(gap)}名` };
+  } else if (score > 0 && minScore > 0) {
     const gap = score - minScore;
-    if (gap >= 18) return { zone: "分数稳", score: 84, text: `分数高出近年最低分${gap}分，缺位次需复核` };
-    if (gap >= 8) return { zone: "分数稳妥", score: 76, text: `分数高出近年最低分${gap}分，缺位次需复核` };
-    if (gap >= 0) return { zone: "分数临界", score: 66, text: `分数高出近年最低分${gap}分，缺位次需复核` };
-    if (gap >= -8) return { zone: "分数冲", score: 52, text: `分数低于近年最低分${Math.abs(gap)}分，缺位次需复核` };
-    return { zone: "分数高冲", score: 36, text: `分数低于近年最低分${Math.abs(gap)}分，缺位次需复核` };
+    if (gap >= 18) fit = { zone: "分数稳", score: 84, text: `分数高出近年最低分${gap}分，缺位次需复核` };
+    else if (gap >= 8) fit = { zone: "分数稳妥", score: 76, text: `分数高出近年最低分${gap}分，缺位次需复核` };
+    else if (gap >= 0) fit = { zone: "分数临界", score: 66, text: `分数高出近年最低分${gap}分，缺位次需复核` };
+    else if (gap >= -8) fit = { zone: "分数冲", score: 52, text: `分数低于近年最低分${Math.abs(gap)}分，缺位次需复核` };
+    else fit = { zone: "分数高冲", score: 36, text: `分数低于近年最低分${Math.abs(gap)}分，缺位次需复核` };
+  } else {
+    fit = { zone: "待核验", score: 46, text: "缺少最低位次/最低分，不能判断可达性" };
   }
-  return { zone: "待核验", score: 46, text: "缺少最低位次/最低分，不能判断可达性" };
+  return {
+    ...fit,
+    zone: recency.fresh ? fit.zone : `${recency.label}${fit.zone}`,
+    score: Math.max(0, fit.score - recency.penalty),
+    text: `${fit.text}；${recency.text}`,
+    recency,
+  };
 }
 
 function isLimitedAdmissionRecord(record) {
@@ -1393,6 +1434,7 @@ function scoreCandidate(candidate, profile, band) {
     .sort((a, b) => (b.fit.score + b.interest) - (a.fit.score + a.interest))[0];
   const limitedAdmission = bestAdmission && isLimitedAdmissionRecord(bestAdmission.record);
   const schoolOfficialAdmission = bestAdmission && isSchoolOfficialOnlyRecord(bestAdmission.record);
+  const staleAdmission = bestAdmission && !bestAdmission.fit.recency?.fresh;
   const redLines = parseList(profile.redLines);
   const cityPrefs = parseList(profile.cities);
   const interestWords = parseList(profile.interest);
@@ -1495,7 +1537,7 @@ function scoreCandidate(candidate, profile, band) {
 
   let confidence = "C";
   let confidenceReason = "探索性建议：需要补充更多输入或官方数据后再进入正式方案。";
-  if (bestAdmission?.record?.minRankEnd && !limitedAdmission && !schoolOfficialAdmission && !missingInputs.length && evidence.length >= 4 && bestAdmission.fit.score >= 76 && total >= 76 && riskPenalty <= 12) {
+  if (bestAdmission?.record?.minRankEnd && !limitedAdmission && !schoolOfficialAdmission && !staleAdmission && !missingInputs.length && evidence.length >= 4 && bestAdmission.fit.score >= 76 && total >= 76 && riskPenalty <= 12) {
     confidence = "A";
     confidenceReason = "输入完整且已接入结构化录取分，可进入院校/专业分数排序；最终仍需官方核验。";
   } else if (bestAdmission && !missingInputs.length && evidence.length >= 4 && bestAdmission.fit.score >= 62 && total >= 68 && riskPenalty <= 16) {
@@ -1504,6 +1546,8 @@ function scoreCandidate(candidate, profile, band) {
       ? "输入完整且命中官方投档位次，但来源是第2次志愿或 rank-only 口径，只能作为强候选核验。"
       : schoolOfficialAdmission
         ? "输入完整且命中学校官网单校最低分/位次，但它不是省级全量投档表，最高只作为 A- 强候选核验。"
+        : staleAdmission
+          ? `输入完整且命中${bestAdmission.fit.recency.label}历史录取边界，模型已按年份降权，最高只作为 A- 强候选核验。`
         : "输入完整且有录取分数据支持，但目标专业仍需逐项核验。";
   } else if (evidence.length >= 4 && total >= 62) {
     confidence = "B";
@@ -1542,6 +1586,7 @@ function scoreCandidate(candidate, profile, band) {
     ...(scoreStatus.available && !profileRecords.length ? [`当前本地还没有导入${profile.province || "该省"}${profile.subject || ""}结构化录取记录，结果降级为全国候选。`] : []),
     ...(scoreStatus.available && profileRecords.length && !candidateAdmissionRecords.length ? ["当前方向没有命中已导入的本省同科类分数记录，建议继续补充该方向院校数据。"] : []),
     ...(bestAdmission && bestAdmission.fit.score < 62 ? ["当前最佳命中仍属于高冲区间，不能作为稳妥志愿使用。"] : []),
+    ...(staleAdmission ? [bestAdmission.fit.recency.text] : []),
     ...(limitedAdmission ? [admissionRecordLimitWarning(bestAdmission.record)] : []),
     ...(schoolOfficialAdmission ? [admissionRecordLimitWarning(bestAdmission.record)] : []),
     ...(provinceReadiness && provinceReadiness.status !== "strong" ? [`${provinceReadiness.province}数据成熟度为${provinceReadiness.statusLabel}（${provinceReadiness.readinessScore}分）：${provinceReadiness.recommendationUse}`] : []),
