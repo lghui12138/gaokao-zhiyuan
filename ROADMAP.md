@@ -2,6 +2,7 @@
 
 | 变更 | 阶段 | 进入条件 | 退出条件 | 验证 | 状态 | 记录 |
 |---|---|---|---|---|---|---|
+| v3.275 湖南大学2024录取与2025计划全国官方数据 | Phase 7 Deliver | 湖南大学招生网 `2025fs` 目录中28份分省PDF可复核，2024专业最低分/最低位次与2025计划字段可区分 | 901条专业级记录合入主库，28省覆盖、31省浏览器分片、专项隔离和江西样本均可回归 | `node scripts/test-official-hnu-import-v3275.mjs && node scripts/test-browser-runtime-shards-v3274.mjs && node scripts/test-recommendation-boundaries-v3273.mjs` | 通过 | 单校官方层不替代省考试院全量投档/录取表；重庆、西藏、陕西在该官方目录未见PDF，27条新疆记录仅有分数并保持不可计算 |
 | v3.274 深圳大学2024-2025全国官方录取数据 | Phase 7 Deliver | 深圳大学招生网2个索引页和30个省份页面可复核，A/B类别与专项路径可识别 | 1,568条专业级记录合入主库，31省分片、普通推荐边界、mac_2T镜像和HTTP读回一致 | `node scripts/test-official-szu-import-v3274.mjs && node scripts/test-szu-recommendation-boundaries-v3274.mjs && node scripts/test-browser-runtime-shards-v3274.mjs` | 通过 | 仅补充深圳大学单校官方层，不代替省考试院全量投档/录取表；59条无公开最低位次记录保持不可计算 |
 | v3.273 西藏2026计划路径安全分流 | Phase 7 Deliver | 官方全量计划已入库，7,300条来源记录与v3.270更正可核验 | 限定资格计划不进入普通候选，前端、镜像、HTTP与回读边界一致 | `node scripts/test-recommendation-boundaries-v3273.mjs && node scripts/test-browser-runtime-shards-v3272.mjs` | 通过 | 不重复导入全量计划；军警、专项、预科、艺体、部队、对口和定向计划须确认资格后另行核验，且不生成录取概率 |
 | v3.272 西藏2025官方征集志愿计划与2026录取日程 | Phase 7 Deliver | 12次公告、23个附件及2026日程已核验，征集快照与录取分边界明确 | 主库、推荐边界、31省分片、mac_2T、HTTP、浏览器和独立Review守恒 | `node scripts/test-refresh-xizang-vacancy-records-v3272.mjs && node scripts/test-browser-runtime-shards-v3272.mjs && node scripts/test-recommendation-boundaries-v3272.mjs` | 通过 | 无Git仓库；2187条征集快照仅作历史补录信号，独立Review全部P1/P2已关闭，原子刷新失败保留旧输出 |

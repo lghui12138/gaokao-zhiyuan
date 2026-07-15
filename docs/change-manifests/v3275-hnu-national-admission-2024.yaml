@@ -1,0 +1,65 @@
+change_id: "2026-07-15-v3275-hnu-national-admission-2024"
+title: "湖南大学 2024 录取与 2025 计划全国官方数据"
+phase: deliver
+status: complete
+execution_mode: full
+resume_mode: full
+resume_reason: "28份官方PDF同时扩充院校专业线、计划信号、主库和分省浏览器运行时。"
+last_updated: "2026-07-15T12:05:00Z"
+
+surfaces_touched:
+  - surface: information
+    role: primary
+    notes: "湖南大学本科生招生信息网2025fs目录的28份省份PDF、2024最低分/最低位次和2025计划数。"
+  - surface: user
+    role: consumer
+    notes: "全国画像获得可解释的湖南大学专业候选；专项和无位次记录不会伪装成普通可计算候选。"
+  - surface: operational
+    role: consumer
+    notes: "主库、31省浏览器分片、Release恢复脚本和mac_2T按需镜像名单。"
+
+sot_map:
+  - info_name: "湖南大学2025fs分省录取与计划PDF"
+    pattern: 4
+    source: "https://admi.hnu.edu.cn/2025fs/"
+    consumers:
+      - name: "data/admissions/official-national-school-admission-2024-v3275-hnu-import.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/knowledge.json"
+        kind: data
+        sync_lag: generated
+      - name: "site/data/provinces/*.json"
+        kind: runtime
+        sync_lag: generated
+    sync_mechanism: "Node在APFS缓存官方PDF，以pdftotext坐标文本解析并SHA-256审计；jq合并主库后重建浏览器分片。"
+    desync_risk: high
+
+rollback:
+  overall_mode: 1
+  per_surface_modes:
+    - surface: information
+      mode: 1
+      rationale: "保留合并前APFS主库备份；导入或审计失败不覆盖运行数据。"
+    - surface: user
+      mode: 1
+      rationale: "恢复v3.274分片与前端运行时。"
+    - surface: operational
+      mode: 1
+      rationale: "从已校验的Release主档恢复，再定向同步镜像。"
+
+task_slices:
+  - id: "source-import"
+    scope: "28份PDF、2024最低分/最低位次、2025计划数、专项范围与新疆仅分数状态"
+    verification_command: "node scripts/import-official-national-school-admission-2024-v3275-hnu.mjs --use-cache"
+  - id: "import-audit"
+    scope: "附件哈希、901条记录、28省覆盖、三省未覆盖、江西样本与新疆位次边界"
+    verification_command: "node scripts/test-official-hnu-import-v3275.mjs"
+  - id: "runtime-refresh"
+    scope: "主库、31省分片、普通推荐排除专项与字段守恒"
+    verification_command: "node scripts/build-browser-runtime-shards.mjs && node scripts/test-browser-runtime-shards-v3274.mjs && node scripts/test-recommendation-boundaries-v3273.mjs"
+
+residual_risks:
+  - "学校官网单校专业线不是省级全量投档或录取表。"
+  - "2025计划数不能被解释为2024录取结果。"
+  - "重庆、西藏、陕西在该官方目录未覆盖；新疆27条记录没有公开位次。"
