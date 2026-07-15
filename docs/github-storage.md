@@ -18,6 +18,8 @@ Each verified runtime version has a GitHub Release named
   source counts, and restore instructions.
 
 Use `node scripts/restore-runtime-from-github-release.mjs` after cloning to
-download the master asset, restore the hard-linked local master, and rebuild
-browser shards. The release is the immutable data layer; it does not turn a
-school-official source into a province-level formal admission table.
+download the master asset, verify its manifest byte count, SHA-256 and gzip
+integrity, then atomically restore the hard-linked local master and rebuild
+browser shards. `--verify path/to/asset.gz` performs the same check without
+changing the local runtime. The release is the immutable data layer; it does
+not turn a school-official source into a province-level formal admission table.
