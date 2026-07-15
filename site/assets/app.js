@@ -1693,6 +1693,11 @@ function applicationPlanDetail(option) {
   const record = option.record || {};
   const fit = option.admissionFit;
   const major = record.majorName || record.majorGroup || "专业方向待核验";
+  const sourceLabel = isPlanRecord(record)
+    ? "官方计划来源"
+    : isSchoolOfficialOnlyRecord(record)
+      ? "学校官网录取来源"
+      : "官方投档/录取来源";
   const sourceLimit = isPlanRecord(record)
     ? isVacancyPlanRecord(record)
       ? "历史征集剩余计划，只作补录信号。"
@@ -1710,6 +1715,8 @@ function applicationPlanDetail(option) {
       fit?.recency?.label || "",
       ...(option.matchingPools.length > 1 ? [`命中${option.matchingPools.length}个方向`] : []),
     ].filter(Boolean),
+    sourceUrl: record.sourceUrl || "",
+    sourceLabel,
   };
 }
 
@@ -1736,6 +1743,7 @@ function renderApplicationPlan(results) {
                 <strong>${esc(option.name)} · ${esc(detail.major)}</strong>
                 <p>${esc(detail.text)}</p>
                 ${renderTags(detail.tags)}
+                ${detail.sourceUrl ? `<a class="application-plan-source" href="${esc(detail.sourceUrl)}" target="_blank" rel="noreferrer">${esc(detail.sourceLabel)}</a>` : ""}
               </div>
               <span>${esc(option.role || tier.label)}</span>
             </div>`;

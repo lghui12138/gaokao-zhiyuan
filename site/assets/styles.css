@@ -778,6 +778,21 @@ select {
   line-height: 1.4;
 }
 
+.application-plan-source {
+  display: inline-block;
+  margin-top: 9px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.application-plan-source:hover,
+.application-plan-source:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
 .application-plan-row > span {
   color: var(--leaf-dark);
   border-color: #c9ddcf;

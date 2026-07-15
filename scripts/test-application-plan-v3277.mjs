@@ -13,10 +13,10 @@ const bootIndex = source.lastIndexOf("\nboot().catch");
 if (bootIndex < 0) throw new Error("Could not isolate app.js boot call");
 
 const instrumented = `${source.slice(0, bootIndex)}
-globalThis.__gaokaoTest = { buildApplicationPlan };`;
+globalThis.__gaokaoTest = { buildApplicationPlan, applicationPlanDetail };`;
 const context = vm.createContext({ console, Intl, Date });
 vm.runInContext(instrumented, context, { filename: appFile });
-const { buildApplicationPlan } = context.__gaokaoTest;
+const { buildApplicationPlan, applicationPlanDetail } = context.__gaokaoTest;
 
 const freshFit = {
   score: 88,
@@ -39,6 +39,7 @@ const majorRecord = {
   subjectType: "物理类",
   year: 2025,
   minScore: 610,
+  sourceUrl: "https://example.edu.cn/admission/jiangxi",
 };
 const results = [
   {
@@ -70,6 +71,9 @@ assert.deepEqual(Array.from(priority.options[0].matchingPools), ["08 工学产�
 assert.ok(reach && reach.options.some((option) => option.name === "历史大学"), "low-fit historical evidence must remain a reach candidate");
 assert.ok(plan && plan.options.every((option) => option.record.dataType === "admission-plan"), "plan records must remain isolated from admission tiers");
 assert.equal(tiers.flatMap((tier) => tier.options).some((option) => option.name === "无数据学校"), false, "generic schools without a structured record must not enter the executable plan");
+const detail = applicationPlanDetail(priority.options[0]);
+assert.equal(detail.sourceUrl, "https://example.edu.cn/admission/jiangxi");
+assert.equal(detail.sourceLabel, "官方投档/录取来源");
 
 console.log(JSON.stringify({
   status: "ok",
